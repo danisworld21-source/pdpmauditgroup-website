@@ -651,16 +651,18 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
   <div class="contact-inner">
     <h2>Schedule a Consultation</h2>
     <p>Tell us about your facility and we'll reach out within 24 hours to schedule your free compliance assessment.</p>
-    <form id="contactForm" onsubmit="submitContact(event)">
+    <form id="contactForm" name="consultation" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitContact(event)">
+      <input type="hidden" name="form-name" value="consultation">
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="contact-form">
         <div class="cf-row">
-          <input type="text" class="cf-input" id="cfName" placeholder="Your name" required>
-          <input type="text" class="cf-input" id="cfFacility" placeholder="Facility name" required>
+          <input type="text" class="cf-input" id="cfName" name="name" placeholder="Your name" required>
+          <input type="text" class="cf-input" id="cfFacility" name="facility" placeholder="Facility name" required>
         </div>
-        <input type="email" class="cf-input" id="cfEmail" placeholder="Email address" required>
+        <input type="email" class="cf-input" id="cfEmail" name="email" placeholder="Email address" required>
         <div class="cf-row">
-          <input type="text" class="cf-input" id="cfPhone" placeholder="Phone number">
-          <select class="cf-input cf-select" id="cfBeds">
+          <input type="text" class="cf-input" id="cfPhone" name="phone" placeholder="Phone number">
+          <select class="cf-input cf-select" id="cfBeds" name="bed-count">
             <option value="">Bed count...</option>
             <option>Under 75 beds</option>
             <option>76–150 beds</option>
@@ -768,11 +770,30 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeStag();});
 })();
 
-// Contact form
+// Contact form — Netlify Forms submission
 function submitContact(e) {
   e.preventDefault();
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('contactSuccess').classList.add('show');
+  const form = document.getElementById('contactForm');
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const data = new FormData(form);
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data).toString()
+  })
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('contactSuccess').classList.add('show');
+  })
+  .catch(() => {
+    btn.textContent = 'Request Consultation →';
+    btn.disabled = false;
+    alert('There was a problem submitting your request. Please try again or email us directly at consultation@pdpmauditgroup.com');
+  });
 }
 </script>
 </body>

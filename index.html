@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDPM Audit Optimization Group™ — Compliance Defense for SNFs</title>
+<meta name="description" content="PDPM Audit Optimization Group™ defends skilled nursing facilities against RAC, TPE, OIG, CERT, and state survey audits. Expert compliance, staff training, and MDS/PDPM optimization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0b1f45; --navy2: #142b5c; --navy3: #0d2850;
+  --gold: #c8922a; --gold2: #e8a830; --gold-pale: #fef8ec;
+  --forest: #1a3d2b; --forest2: #245238;
+  --sage: #4a7c59; --sage2: #5a9169;
+  --sage-pale: #f0f7f2;
+  --white: #ffffff; --gray: #f4f4f2; --gray2: #e8e6e0;
+  --text: #111827; --muted: #6b7280; --border: #e5e3dd;
+  --red: #c0392b;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 60px;
+  transition: all 0.3s;
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; }
+.nav-logo-shield {
+  width: 44px; height: 44px; background: var(--gold);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.nav-logo-text { line-height: 1.2; }
+.nav-logo-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: -0.01em; }
+nav.scrolled .nav-logo-name { color: var(--navy); }
+.nav-logo-sub { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+nav.scrolled .nav-logo-sub { color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+nav.scrolled .nav-links a { color: var(--muted); }
+.nav-links a:hover { color: var(--gold2); }
+nav.scrolled .nav-links a:hover { color: var(--navy); }
+.nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 22px; border-radius: 6px; font-weight: 700 !important; font-size: 14px !important; transition: all 0.2s !important; }
+.nav-cta:hover { background: var(--gold2) !important; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--forest) 0%, var(--navy) 50%, var(--navy2) 100%);
+  display: flex; align-items: center;
+  padding: 130px 60px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(200,146,42,0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.hero-glow {
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,124,89,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,124,89,0.2); border: 1px solid rgba(74,124,89,0.4);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #86c99a; margin-bottom: 24px;
+  opacity: 0; animation: rise 0.6s 0.2s ease forwards;
+}
+.kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: #86c99a; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 900; line-height: 1.0;
+  color: var(--white); letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  opacity: 0; animation: rise 0.7s 0.35s ease forwards;
+}
+.hero h1 .accent { color: var(--gold2); font-style: italic; }
+.hero h1 .dim { color: rgba(255,255,255,0.35); display: block; font-style: italic; }
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: rgba(255,255,255,0.6); line-height: 1.75;
+  max-width: 520px; margin-bottom: 40px;
+  opacity: 0; animation: rise 0.7s 0.5s ease forwards;
+}
+.hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: rise 0.7s 0.65s ease forwards; }
+.btn-gold-hero { background: var(--gold); color: var(--navy); padding: 16px 36px; border-radius: 6px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.25s; display: inline-block; box-shadow: 0 4px 24px rgba(200,146,42,0.35); }
+.btn-gold-hero:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost-hero { border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-block; }
+.btn-ghost-hero:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+/* HERO SHIELD CARD */
+.shield-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 36px 32px;
+  backdrop-filter: blur(10px);
+  opacity: 0; animation: slideL 0.8s 0.5s ease forwards;
+}
+@keyframes slideL { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
+.shield-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold2); margin-bottom: 20px; }
+.audit-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 8px; margin-bottom: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
+  transition: all 0.2s;
+}
+.audit-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(200,146,42,0.3); }
+.audit-icon { font-size: 18px; flex-shrink: 0; }
+.audit-badge { margin-left: auto; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.06em; }
+.badge-def { background: rgba(74,124,89,0.3); color: #86c99a; }
+.badge-warn { background: rgba(200,146,42,0.2); color: var(--gold2); }
+.shield-bottom {
+  margin-top: 16px; padding: 14px 16px;
+  background: rgba(200,146,42,0.1);
+  border: 1px solid rgba(200,146,42,0.25);
+  border-radius: 8px;
+  font-size: 13px; color: var(--gold2); font-weight: 600; text-align: center;
+}
+
+@keyframes rise { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* PROOF STRIP */
+.proof { display: flex; background: var(--white); border-bottom: 1px solid var(--border); }
+.proof-item { flex: 1; padding: 32px 24px; text-align: center; border-right: 1px solid var(--border); }
+.proof-item:last-child { border-right: none; }
+.proof-num { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 5px; }
+.proof-num span { color: var(--sage); }
+.proof-lbl { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+/* SERVICES */
+.services { padding: 110px 60px; background: var(--gray); }
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.section-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 10px; }
+.section-h { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 56px; letter-spacing: -0.02em; }
+.section-h em { font-style: italic; color: var(--gold); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 36px 30px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.service-card:hover { box-shadow: 0 12px 40px rgba(11,31,69,0.1); transform: translateY(-4px); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon { font-size: 36px; margin-bottom: 16px; }
+.service-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.service-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.stag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: var(--sage-pale); color: var(--sage); border: 1px solid rgba(74,124,89,0.2); cursor: pointer; transition: background 0.15s, color 0.15s, transform 0.12s, border-color 0.15s; }
+.stag:hover { background: #2d7a47 !important; color: #fff !important; border-color: #2d7a47 !important; transform: translateY(-1px); }
+.stag:active { transform: translateY(0); }
+/* STAG MODAL */
+#stag-modal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; padding: 16px; }
+#stag-modal.open { display: flex; }
+#stag-modal-backdrop { position: absolute; inset: 0; background: rgba(0,10,20,0.72); backdrop-filter: blur(3px); cursor: pointer; }
+#stag-modal-box { position: relative; z-index: 1; background: #fff; border-radius: 16px; padding: 32px 28px 28px; max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.35); animation: stagSlideUp 0.22s cubic-bezier(0.22,0.68,0,1.2) both; }
+@keyframes stagSlideUp { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+#stag-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; line-height: 1; color: #888; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+#stag-modal-close:hover { background: #f0f0f0; color: #333; }
+#stag-modal-abbr { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: #edf7f0; color: #2d7a47; border: 1px solid rgba(74,124,89,0.25); margin-bottom: 10px; letter-spacing: 0.04em; }
+#stag-modal-full { font-size: 20px; font-weight: 800; color: #001a33; margin-bottom: 18px; line-height: 1.25; }
+.stag-modal-section { margin-top: 14px; }
+.stag-modal-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c8860a; margin-bottom: 6px; }
+#stag-modal-def, #stag-modal-service { font-size: 14px; color: #374151; line-height: 1.65; }
+/* PRICING */
+.pricing { padding: 110px 60px; background: var(--white); }
+.pricing-inner { max-width: 1100px; margin: 0 auto; }
+.pricing-table { width: 100%; border-collapse: collapse; font-family: 'DM Sans', sans-serif; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 40px rgba(11,31,69,0.1); }
+.pricing-table thead tr { background: var(--navy); color: var(--white); }
+.pricing-table thead th { padding: 18px 22px; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+.pricing-table tbody tr:nth-child(odd) { background: var(--gray); }
+.pricing-table tbody tr:nth-child(even) { background: var(--white); }
+.pricing-table tbody tr:hover { background: var(--sage-pale); }
+.pricing-table td { padding: 20px 22px; vertical-align: top; font-size: 14px; line-height: 1.7; color: var(--text); border-bottom: 1px solid var(--border); }
+.pricing-table td:first-child { font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; }
+.pricing-table td:nth-child(2) { font-weight: 700; font-size: 16px; color: var(--navy); white-space: nowrap; }
+.pricing-milestone { color: var(--gold); font-weight: 700; }
+@media (max-width: 960px) { .pricing { padding: 70px 24px; } .pricing-table td:first-child, .pricing-table td:nth-child(2) { white-space: normal; } }
+
+/* AUDIT TYPES */
+.audits { padding: 110px 60px; background: var(--navy); }
+.audits-inner { max-width: 1200px; margin: 0 auto; }
+.audits .section-h { color: var(--white); }
+.audits .section-kicker { color: var(--gold2); }
+.audit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.audit-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 24px 20px;
+  transition: all 0.2s;
+}
+.audit-box:hover { background: rgba(200,146,42,0.08); border-color: rgba(200,146,42,0.3); transform: translateY(-2px); }
+.audit-box-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; color: var(--gold2); margin-bottom: 6px; }
+.audit-box-full { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+.audit-box-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+/* TRAINING */
+.training { padding: 110px 60px; background: var(--white); }
+.training-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
+.training-left h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.08; margin-bottom: 18px; letter-spacing: -0.02em; }
+.training-left h2 em { font-style: italic; color: var(--gold); }
+.training-left p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.role-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; background: var(--gray);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; font-weight: 600; color: var(--navy);
+  transition: all 0.2s;
+}
+.role-item:hover { background: var(--sage-pale); border-color: rgba(74,124,89,0.3); }
+.role-icon { font-size: 18px; flex-shrink: 0; }
+.training-visual {
+  background: var(--navy); border-radius: 16px; padding: 36px 32px;
+  box-shadow: 0 16px 48px rgba(11,31,69,0.15);
+}
+.tv-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.schedule-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.schedule-item:last-child { border-bottom: none; }
+.schedule-freq { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold2); min-width: 80px; margin-top: 2px; }
+.schedule-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+.schedule-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* REVOPTIX BRIDGE */
+.bridge { padding: 110px 60px; background: var(--sage-pale); }
+.bridge-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.bridge-inner h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; }
+.bridge-inner h2 em { font-style: italic; color: var(--gold); }
+.bridge-inner p { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 48px; line-height: 1.75; font-weight: 300; }
+.bridge-cards { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; max-width: 900px; margin: 0 auto; }
+.bridge-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px 28px; text-align: left;
+}
+.bc-logo { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+.bc-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 12px; display: inline-block; }
+.tag-sage { background: var(--sage-pale); color: var(--sage); border: 1px solid rgba(74,124,89,0.2); }
+.tag-gold { background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(200,146,42,0.25); }
+.bc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.bridge-plus { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; color: var(--gold); }
+.bridge-result {
+  margin-top: 32px; background: var(--navy); border-radius: 14px; padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 32px auto 0;
+  flex-wrap: wrap; gap: 16px;
+}
+.br-text { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.5; max-width: 520px; }
+.br-text strong { color: var(--white); }
+.btn-bridge { background: var(--gold); color: var(--navy); padding: 14px 28px; border-radius: 6px; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.2s; }
+.btn-bridge:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* CTA */
+.cta { padding: 100px 60px; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(200,146,42,0.06) 1px, transparent 1px); background-size: 44px 44px; }
+.cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.cta h2 { font-family: 'Fraunces', serif; font-size: clamp(36px, 6vw, 68px); font-weight: 900; color: var(--white); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 20px; }
+.cta h2 em { font-style: italic; color: var(--gold2); }
+.cta p { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 500px; margin: 0 auto 40px; line-height: 1.65; font-weight: 300; }
+.btn-cta-gold { background: var(--gold); color: var(--navy); padding: 18px 44px; border-radius: 6px; font-size: 16px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; box-shadow: 0 8px 32px rgba(200,146,42,0.25); }
+.btn-cta-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+
+/* CONTACT */
+.contact { padding: 80px 60px; background: var(--gray); }
+.contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+.contact h2 { font-family: 'Fraunces', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 900; color: var(--navy); margin-bottom: 14px; letter-spacing: -0.02em; }
+.contact p { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.65; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; max-width: 500px; margin: 0 auto; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cf-input { padding: 14px 18px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; background: var(--white); }
+.cf-input:focus { border-color: var(--sage); }
+.cf-input::placeholder { color: var(--muted); }
+.cf-select { appearance: none; cursor: pointer; }
+.btn-contact { background: var(--navy); color: white; padding: 16px; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.btn-contact:hover { background: var(--navy2); transform: translateY(-1px); }
+.contact-success { display: none; background: var(--sage-pale); border: 1px solid rgba(74,124,89,0.3); border-radius: 8px; padding: 16px; color: var(--sage); font-size: 15px; font-weight: 600; }
+.contact-success.show { display: block; }
+
+/* FOOTER */
+footer { background: var(--navy); padding: 48px 60px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-shield { width: 36px; height: 36px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.footer-name { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 800; color: var(--white); }
+.footer-sub { font-size: 11px; color: rgba(255,255,255,0.35); }
+footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold2); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.up { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 960px) {
+  nav { padding: 14px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 110px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .proof { flex-wrap: wrap; }
+  .proof-item { flex: 1 1 140px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .audit-grid { grid-template-columns: repeat(2, 1fr); }
+  .training-inner { grid-template-columns: 1fr; gap: 40px; }
+  .role-grid { grid-template-columns: 1fr; }
+  .bridge-cards { grid-template-columns: 1fr; }
+  .bridge-plus { display: none; }
+  .services,.audits,.training,.bridge,.cta,.contact { padding: 70px 24px; }
+  footer { padding: 36px 24px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-shield">🛡️</div>
+    <div class="nav-logo-text">
+      <div class="nav-logo-name">PDPM Audit Optimization Group™</div>
+      <div class="nav-logo-sub">Compliance Defense for SNFs</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#audits">Audit Defense</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="https://revoptix1.com" target="_blank">RevOptix1™</a></li>
+    <li><a href="#contact" class="nav-cta">Schedule Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker"><span class="kicker-dot"></span> SNF Compliance Defense Specialists</div>
+      <h1>
+        When CMS Arrives,<br>
+        <span class="accent">Your Defense</span><br>
+        <span class="dim">Is Already Prepared.</span>
+      </h1>
+      <p class="hero-sub">PDPM Audit Optimization Group™ defends skilled nursing facilities against <strong>every major federal and state audit type</strong> — while training your entire team to prevent findings before they happen.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-gold-hero">Schedule a Consultation</a>
+        <a href="#audits" class="btn-ghost-hero">See All Audit Types →</a>
+      </div>
+    </div>
+
+    <div class="shield-card">
+      <div class="shield-title">🛡️ Active Defense Coverage</div>
+      <div class="audit-item"><span class="audit-icon">⚡</span>RAC Audit Defense<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">🔍</span>TPE Review Defense<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">⚖️</span>OIG Compliance<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">📋</span>CERT Audit Defense<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">🏛️</span>State Survey Defense<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">📊</span>MDS / PDPM Optimization<span class="audit-badge badge-def">COVERED</span></div>
+      <div class="audit-item"><span class="audit-icon">⚠️</span>UPIC Investigation<span class="audit-badge badge-warn">COVERED</span></div>
+      <div class="shield-bottom">✓ Comprehensive defense — all audit types, all staff roles</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof">
+  <div class="proof-item">
+    <div class="proof-num"><span>7+</span></div>
+    <div class="proof-lbl">Major federal audit types<br>covered under one agreement</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num"><span>All</span></div>
+    <div class="proof-lbl">Staff roles trained quarterly —<br>administrators to physicians</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num"><span>Monthly</span></div>
+    <div class="proof-lbl">Leadership meetings with<br>full compliance reporting</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-num"><span>iQIES</span></div>
+    <div class="proof-lbl">Documentation structured for<br>CMS audit defense from day one</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="reveal">
+      <p class="section-kicker">Core Services</p>
+      <h2 class="section-h">Complete Compliance Coverage —<br><em>From Prevention to Defense</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🛡️</div>
+        <div class="service-name">Compliance Audit Defense</div>
+        <div class="service-desc">When a federal or state audit arrives, your documentation is already organized, your staff is already trained, and your defense is already written. PDPM Audit Group™ prepares you before — not during.</div>
+        <div class="service-tags"><span class="stag">RAC</span><span class="stag">TPE</span><span class="stag">OIG</span><span class="stag">CERT</span><span class="stag">UPIC</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <div class="service-name">MDS & PDPM Optimization</div>
+        <div class="service-desc">Your MDS is the foundation of everything — reimbursement, quality metrics, audit exposure. We review every section, identify documentation patterns that create risk, and train your coordinators on current CMS expectations.</div>
+        <div class="service-tags"><span class="stag">MDS Review</span><span class="stag">PDPM</span><span class="stag">QRP</span><span class="stag">VBP</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏛️</div>
+        <div class="service-name">State Survey Defense</div>
+        <div class="service-desc">State health inspections and federal certification surveys create significant compliance risk. We monitor regulatory changes in real time and ensure your facility documentation meets every current standard before surveyors arrive.</div>
+        <div class="service-tags"><span class="stag">Health Inspections</span><span class="stag">Life Safety</span><span class="stag">CMS Certification</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎓</div>
+        <div class="service-name">Quarterly Staff Training</div>
+        <div class="service-desc">Every role in your facility — from the administrator to the dietary aide — receives targeted compliance training each quarter. Training is specific to their role, current regulations, and your facility's specific risk profile.</div>
+        <div class="service-tags"><span class="stag">All Roles</span><span class="stag">Quarterly</span><span class="stag">CMS Current</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📅</div>
+        <div class="service-name">Monthly Leadership Meetings</div>
+        <div class="service-desc">Your administrator and leadership team receive a full compliance and billing performance report every month — with documented improvements, upcoming regulatory changes, and a proactive plan already in place.</div>
+        <div class="service-tags"><span class="stag">Monthly Reports</span><span class="stag">Billing Review</span><span class="stag">Proactive Planning</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🩺</div>
+        <div class="service-name">Physician Training</div>
+        <div class="service-desc">Physicians are one of the highest-risk documentation gaps in any SNF. Our 1-on-1 physician training sessions focus on order documentation, diagnosis specificity, and the connection between physician notes and MDS coding.</div>
+        <div class="service-tags"><span class="stag">1-on-1</span><span class="stag">Documentation</span><span class="stag">ICD-10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT TYPES -->
+<section class="audits" id="audits">
+  <div class="audits-inner">
+    <div class="reveal">
+      <p class="section-kicker">Audit Defense Coverage</p>
+      <h2 class="section-h" style="color:var(--white);">Every Audit Type.<br><em>One Defense Team.</em></h2>
+    </div>
+    <div class="audit-grid">
+      <div class="audit-box reveal">
+        <div class="audit-box-name">RAC</div>
+        <div class="audit-box-full">Recovery Audit Contractor</div>
+        <div class="audit-box-desc">Post-payment reviews targeting improper Medicare and Medicaid payments. High-dollar overpayment demands with aggressive collection timelines.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">TPE</div>
+        <div class="audit-box-full">Targeted Probe & Educate</div>
+        <div class="audit-box-desc">CMS pre-payment and post-payment reviews targeting facilities with identified billing patterns. Escalates to Additional Documentation Requests.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">OIG</div>
+        <div class="audit-box-full">Office of Inspector General</div>
+        <div class="audit-box-desc">Federal investigations into fraud, waste, and abuse. Can result in exclusion from Medicare/Medicaid and significant civil monetary penalties.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">CERT</div>
+        <div class="audit-box-full">Comprehensive Error Rate Testing</div>
+        <div class="audit-box-desc">Annual CMS program measuring improper payment rates. CERT findings directly influence future RAC and TPE targeting of your facility.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">UPIC</div>
+        <div class="audit-box-full">Unified Program Integrity Contractor</div>
+        <div class="audit-box-desc">Investigates potential fraud and abuse across Medicare and Medicaid. Has authority to request medical records and interview staff.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">RAI</div>
+        <div class="audit-box-full">Resident Assessment Instrument</div>
+        <div class="audit-box-desc">MDS accuracy and completion audits. Errors in RAI documentation directly affect PDPM reimbursement and quality measure scores.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">PBJ</div>
+        <div class="audit-box-full">Payroll Based Journal</div>
+        <div class="audit-box-desc">CMS staffing data reporting compliance. Inaccurate PBJ submissions affect Five-Star ratings and trigger additional regulatory scrutiny.</div>
+      </div>
+      <div class="audit-box reveal">
+        <div class="audit-box-name">State</div>
+        <div class="audit-box-full">State Health Surveys</div>
+        <div class="audit-box-desc">Annual health inspections, complaint investigations, and life safety surveys. Deficiencies affect certification status and public Five-Star rating.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="training" id="training">
+  <div class="training-inner">
+    <div class="reveal">
+      <p class="section-kicker">Staff Training Program</p>
+      <h2>Every Role.<br>Every Quarter.<br><em>Current with CMS.</em></h2>
+      <p>Compliance failures almost always trace back to staff who were not trained on current requirements. PDPM Audit Group™ trains every role in your facility — not just clinical staff — every single quarter, with content updated to reflect the latest CMS guidance.</p>
+      <div class="role-grid">
+        <div class="role-item"><span class="role-icon">👔</span>Administrators</div>
+        <div class="role-item"><span class="role-icon">📋</span>MDS Coordinators</div>
+        <div class="role-item"><span class="role-icon">👩‍⚕️</span>Directors of Nursing</div>
+        <div class="role-item"><span class="role-icon">🩺</span>Physicians</div>
+        <div class="role-item"><span class="role-icon">💊</span>Nursing Staff</div>
+        <div class="role-item"><span class="role-icon">🏃</span>Therapy Staff</div>
+        <div class="role-item"><span class="role-icon">🤝</span>Social Workers</div>
+        <div class="role-item"><span class="role-icon">🍽️</span>Dietary & Support</div>
+      </div>
+    </div>
+    <div class="training-visual reveal">
+      <div class="tv-label">📅 Ongoing Service Schedule</div>
+      <div class="schedule-item">
+        <div class="schedule-freq">Monthly</div>
+        <div>
+          <div class="schedule-name">Leadership Meeting + Report</div>
+          <div class="schedule-desc">Full billing and compliance performance review with your administrator and leadership team. Upcoming changes and proactive action plan.</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-freq">Quarterly</div>
+        <div>
+          <div class="schedule-name">All-Staff Training Sessions</div>
+          <div class="schedule-desc">Role-specific training for every department. Content updated to current CMS requirements each cycle.</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-freq">As Needed</div>
+        <div>
+          <div class="schedule-name">1-on-1 Physician Training</div>
+          <div class="schedule-desc">Individual sessions focused on documentation quality, ICD-10 specificity, and order documentation practices.</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-freq">Ongoing</div>
+        <div>
+          <div class="schedule-name">Regulatory Monitoring</div>
+          <div class="schedule-desc">Real-time alerts for CMS rule changes, transmittals, and guidance updates affecting your facility.</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-freq">On Demand</div>
+        <div>
+          <div class="schedule-name">Audit Response Support</div>
+          <div class="schedule-desc">Immediate assistance when an audit, ADR, or survey notice arrives. Documentation organized and defense prepared.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="reveal">
+      <p class="section-kicker">Service Plans</p>
+      <h2 class="section-h">Transparent Pricing &mdash;<br><em>Built for Every SNF</em></h2>
+    </div>
+    <table class="pricing-table reveal">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Monthly Price</th>
+          <th>Features</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small (&le;75 beds)</td>
+          <td>$3,500/mo</td>
+          <td>Unlimited audits &bull; RevOptix1 access &bull; Documentation scoring &bull; Monthly compliance review &bull; Standard support<br><span class="pricing-milestone">Milestone bonuses available</span></td>
+        </tr>
+        <tr>
+          <td>Medium (76&ndash;150 beds)</td>
+          <td>$5,000/mo</td>
+          <td>Everything in Small &bull; Priority turnaround &bull; Quarterly strategy review &bull; Enhanced reporting<br><span class="pricing-milestone">Enhanced milestone bonuses</span></td>
+        </tr>
+        <tr>
+          <td>Large (151&ndash;200 beds)</td>
+          <td>$8,000/mo</td>
+          <td>Everything in Medium &bull; Dedicated specialist &bull; Custom templates &bull; Monthly leadership briefings<br><span class="pricing-milestone">Premium milestone bonuses</span></td>
+        </tr>
+        <tr>
+          <td>Enterprise (201+ beds)</td>
+          <td>$12,000/mo</td>
+          <td>Everything in Large &bull; Multi-facility analytics &bull; Corporate strategy &bull; Custom workflow engineering<br><span class="pricing-milestone">Enterprise milestone program</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- REVOPTIX BRIDGE -->
+<section class="bridge">
+  <div class="bridge-inner reveal">
+    <p class="section-kicker" style="color:var(--sage);">Powered By Technology</p>
+    <h2>PDPM Audit Group™ + <em>RevOptix1™</em></h2>
+    <p>Human expertise and AI technology working together — the complete SNF revenue and compliance defense system.</p>
+    <div class="bridge-cards">
+      <div class="bridge-card">
+        <div class="bc-logo">PDPM Audit Optimization Group™</div>
+        <div class="bc-tag tag-sage">Human Expertise</div>
+        <div class="bc-desc">Compliance auditing, audit defense, staff training, leadership meetings, physician training, regulatory monitoring, and iQIES documentation.</div>
+      </div>
+      <div class="bridge-plus">+</div>
+      <div class="bridge-card">
+        <div class="bc-logo">RevOptix1™</div>
+        <div class="bc-tag tag-gold">AI Technology</div>
+        <div class="bc-desc">AI-powered ICD-10 gap analysis, patient chart scanning, revenue recovery reports, physician order dashboard, and staff communications platform.</div>
+      </div>
+    </div>
+    <div class="bridge-result">
+      <div class="br-text">Together, they form a complete system that <strong>finds every missed dollar</strong> and <strong>defends every audit</strong> — the only SNF solution that covers both revenue and compliance in one agreement.</div>
+      <a href="https://revoptix1.com" target="_blank" class="btn-bridge">Learn About RevOptix1™ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner reveal">
+    <h2>Is Your Facility<br><em>Truly Prepared</em>?</h2>
+    <p>Most SNFs discover their compliance gaps during an audit — not before. PDPM Audit Group™ finds them first, fixes them proactively, and defends you when it counts.</p>
+    <a href="#contact" class="btn-cta-gold">Schedule Your Consultation →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2>Schedule a Consultation</h2>
+    <p>Tell us about your facility and we'll reach out within 24 hours to schedule your free compliance assessment.</p>
+    <form id="contactForm" onsubmit="submitContact(event)">
+      <div class="contact-form">
+        <div class="cf-row">
+          <input type="text" class="cf-input" id="cfName" placeholder="Your name" required>
+          <input type="text" class="cf-input" id="cfFacility" placeholder="Facility name" required>
+        </div>
+        <input type="email" class="cf-input" id="cfEmail" placeholder="Email address" required>
+        <div class="cf-row">
+          <input type="text" class="cf-input" id="cfPhone" placeholder="Phone number">
+          <select class="cf-input cf-select" id="cfBeds">
+            <option value="">Bed count...</option>
+            <option>Under 75 beds</option>
+            <option>76–150 beds</option>
+            <option>151–200 beds</option>
+            <option>201+ beds</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-contact">Request Consultation →</button>
+      </div>
+    </form>
+    <div class="contact-success" id="contactSuccess">✓ Thank you — we'll be in touch within 24 hours to schedule your free consultation.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-shield">🛡️</div>
+      <div>
+        <div class="footer-name">PDPM Audit Optimization Group™</div>
+        <div class="footer-sub">Compliance Defense for Skilled Nursing Facilities</div>
+      </div>
+    </div>
+    <p>© 2025 PDPM Audit Optimization Group™. All rights reserved.<br>Powered by RevOptix1™ Revenue Optimization Technology.</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#audits">Audit Defense</a>
+      <a href="https://revoptix1.com" target="_blank">RevOptix1™</a>
+      <a href="mailto:info@pdpmauditgroup.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- STAG MODAL -->
+<div id="stag-modal" role="dialog" aria-modal="true" aria-labelledby="stag-modal-full">
+  <div id="stag-modal-backdrop"></div>
+  <div id="stag-modal-box">
+    <button id="stag-modal-close" aria-label="Close">&times;</button>
+    <div id="stag-modal-abbr"></div>
+    <div id="stag-modal-full"></div>
+    <div class="stag-modal-section"><div class="stag-modal-label">What it is</div><div id="stag-modal-def"></div></div>
+    <div class="stag-modal-section"><div class="stag-modal-label">How we help</div><div id="stag-modal-service"></div></div>
+  </div>
+</div>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('up'), i * 80);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Stag tag popups
+(function(){
+  var D={
+    'RAC':{full:'Recovery Audit Contractor',def:'A CMS-authorized contractor that conducts post-payment reviews to identify and recover improper Medicare and Medicaid payments made to healthcare providers.',service:'We organize your documentation, prepare your response letters, and manage the entire appeals process — from ADR through ALJ hearing if needed.'},
+    'TPE':{full:'Targeted Probe & Educate',def:'A CMS pre-payment and post-payment review program that targets providers with identified billing patterns. Facilities that fail multiple rounds face referral to a Zone Program Integrity Contractor (ZPIC).',service:'We identify the billing patterns triggering TPE selection, correct documentation gaps before submission, and provide the education CMS requires to exit the review cycle.'},
+    'OIG':{full:'Office of Inspector General',def:'The federal watchdog agency that investigates fraud, waste, and abuse in Medicare and Medicaid. OIG investigations can result in exclusion from federal programs, civil monetary penalties, and criminal referrals.',service:'We conduct internal compliance reviews aligned with OIG Work Plan priorities, identify exposure areas, and build a documented compliance program that demonstrates good-faith effort.'},
+    'CERT':{full:'Comprehensive Error Rate Testing',def:'An annual CMS program that measures the national improper payment rate for Medicare. CERT findings are used to target future RAC and TPE reviews at facility types with elevated error rates.',service:'We review your documentation against CERT sampling criteria, correct patterns that elevate your error rate risk, and ensure your records meet the evidentiary standard CERT reviewers require.'},
+    'UPIC':{full:'Unified Program Integrity Contractor',def:'A CMS contractor with broad authority to investigate potential fraud and abuse across both Medicare and Medicaid simultaneously. UPICs can request medical records, conduct site visits, and interview staff.',service:'We prepare your facility for UPIC contact with staff communication protocols, documentation organization, and legal coordination support throughout the investigation.'},
+    'MDS Review':{full:'Minimum Data Set Review',def:'A comprehensive clinical assessment tool used for all residents in Medicare/Medicaid-certified nursing facilities. MDS accuracy directly determines PDPM reimbursement rates and quality measure scores.',service:'We conduct section-by-section MDS accuracy reviews, identify coding gaps that reduce reimbursement, and train your MDS coordinators on current CMS RAI Manual requirements.'},
+    'PDPM':{full:'Patient-Driven Payment Model',def:'The Medicare SNF reimbursement system (effective Oct. 2019) that bases per-diem payments on patient clinical characteristics across five components: PT, OT, SLP, Nursing, and Non-Therapy Ancillary.',service:'We audit each PDPM component for accuracy, identify missed ICD-10 codes and NTA comorbidities, and calculate the recoverable revenue from corrected classifications.'},
+    'QRP':{full:'Quality Reporting Program',def:'A CMS program requiring SNFs to submit standardized quality measure data. Facilities that fail to meet QRP requirements receive a 2% reduction in their annual market basket update.',service:'We review your QRP submissions for accuracy and completeness, identify measures where documentation gaps create reporting risk, and train staff on QRP-linked MDS items.'},
+    'VBP':{full:'Value-Based Purchasing',def:'A CMS payment incentive program that adjusts SNF Medicare payments based on 30-day all-cause hospital readmission rates. High readmission rates result in payment reductions.',service:'We analyze your readmission patterns, identify documentation and care coordination gaps that drive your VBP score, and implement targeted interventions to improve your payment multiplier.'},
+    'Health Inspections':{full:'State Health Inspections',def:'Annual unannounced surveys conducted by state health departments to assess compliance with federal and state nursing facility regulations. Deficiencies are publicly reported and affect Five-Star ratings.',service:'We conduct mock surveys using CMS survey protocols, identify deficiency-prone areas in your documentation and care practices, and train staff on surveyor expectations before the inspection arrives.'},
+    'Life Safety':{full:'Life Safety Code Survey',def:'A federal inspection assessing compliance with NFPA 101 Life Safety Code requirements for fire protection, egress, and physical environment standards in nursing facilities.',service:'We review your life safety documentation, identify common citation areas, and coordinate with your maintenance and administrative team to ensure your facility meets current LSC standards.'},
+    'CMS Certification':{full:'CMS Certification Survey',def:"The federal survey process that certifies a nursing facility's eligibility to participate in Medicare and Medicaid programs. Failed certification can result in termination from federal programs.",service:'We prepare your facility for certification surveys with comprehensive documentation reviews, staff training, and a pre-survey readiness assessment aligned with current CMS Surveyor Guidance.'},
+    'All Roles':{full:'All Staff Roles',def:'Compliance training must reach every employee — not just clinical staff. CMS holds facilities accountable for the actions of all employees, from administrators to dietary aides.',service:'We deliver role-specific training to every department each quarter — administrators, MDS coordinators, DONs, physicians, nursing staff, therapy, social work, and dietary — with content current to CMS guidance.'},
+    'Quarterly':{full:'Quarterly Training Cadence',def:'CMS expects facilities to maintain ongoing compliance education programs. Annual training is insufficient given the pace of regulatory changes — quarterly training ensures staff remain current.',service:"Our quarterly training cycle keeps every staff role updated on the latest CMS transmittals, survey guidance changes, and PDPM/MDS updates that affect your facility's compliance posture."},
+    'CMS Current':{full:'Current CMS Guidance',def:'CMS issues frequent transmittals, memoranda, and RAI Manual updates that change documentation requirements, billing rules, and survey standards throughout the year.',service:"We monitor CMS guidance in real time and update all training content within each quarter's cycle — so your staff is always trained on what surveyors and auditors are actually looking for today."},
+    'Monthly Reports':{full:'Monthly Compliance Reports',def:"Regular reporting is a core element of an effective compliance program under OIG guidance. Monthly reports document your facility's compliance activity and demonstrate proactive management.",service:'We deliver a full compliance and billing performance report to your leadership team each month — including audit exposure trends, documentation improvements, and upcoming regulatory changes.'},
+    'Billing Review':{full:'Monthly Billing Review',def:'A systematic review of Medicare claims, PDPM component accuracy, and MDS coding patterns to identify billing errors before they become audit targets.',service:'We review your monthly billing data for PDPM accuracy, flag patterns that elevate RAC and TPE risk, and provide corrective action recommendations before claims become overpayment demands.'},
+    'Proactive Planning':{full:'Proactive Compliance Planning',def:'Reactive compliance — responding to audits after they arrive — is the most expensive approach. Proactive planning identifies and corrects gaps before they become findings.',service:"Each monthly leadership meeting includes a forward-looking action plan based on your facility's specific risk profile, upcoming CMS changes, and any open audit or survey activity."},
+    '1-on-1':{full:'1-on-1 Physician Training',def:'Physician documentation is one of the most common and costly audit vulnerabilities in SNFs. Vague diagnoses, missing specificity, and incomplete orders directly reduce PDPM reimbursement and create audit exposure.',service:'We conduct individual training sessions with each attending physician focused on ICD-10 diagnosis specificity, order documentation standards, and the direct connection between physician notes and MDS coding accuracy.'},
+    'Documentation':{full:'Clinical Documentation Standards',def:'CMS requires that physician documentation support every diagnosis coded on the MDS. Missing specificity, unsigned orders, and vague clinical language are among the top reasons for audit findings and PDPM downgrades.',service:'We review physician documentation patterns, identify specificity gaps that affect PDPM component scoring, and provide targeted guidance on the documentation standards CMS auditors and surveyors require.'},
+    'ICD-10':{full:'ICD-10-CM Coding',def:'The International Classification of Diseases, 10th Revision coding system used to classify diagnoses on MDS assessments. ICD-10 code selection directly determines PDPM clinical category assignment and NTA comorbidity scoring.',service:'We audit ICD-10 code selection across all PDPM components, identify missed high-value NTA comorbidities, and train physicians and MDS coordinators on the specificity requirements that maximize accurate reimbursement.'}
+  };
+  document.querySelectorAll('.stag').forEach(function(el){
+    var k=el.textContent.trim();
+    if(!D[k])return;
+    el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label','Learn about '+k);
+    el.addEventListener('click',function(){openStag(k);});
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openStag(k);}});
+  });
+  function openStag(k){
+    var d=D[k];
+    document.getElementById('stag-modal-abbr').textContent=k;
+    document.getElementById('stag-modal-full').textContent=d.full;
+    document.getElementById('stag-modal-def').textContent=d.def;
+    document.getElementById('stag-modal-service').textContent=d.service;
+    document.getElementById('stag-modal').classList.add('open');
+    document.getElementById('stag-modal-close').focus();
+  }
+  function closeStag(){document.getElementById('stag-modal').classList.remove('open');}
+  document.getElementById('stag-modal-close').addEventListener('click',closeStag);
+  document.getElementById('stag-modal-backdrop').addEventListener('click',closeStag);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeStag();});
+})();
+
+// Contact form
+function submitContact(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('contactSuccess').classList.add('show');
+}
+</script>
+</body>
+</html>

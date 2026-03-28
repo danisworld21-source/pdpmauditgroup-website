@@ -35,17 +35,10 @@ nav.scrolled {
   padding: 14px 60px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06);
 }
-.nav-logo { display: flex; align-items: center; gap: 12px; }
-.nav-logo-shield {
-  width: 44px; height: 44px; background: var(--gold);
-  border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  font-size: 22px; flex-shrink: 0;
-}
-.nav-logo-text { line-height: 1.2; }
-.nav-logo-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: -0.01em; }
-nav.scrolled .nav-logo-name { color: var(--navy); }
-.nav-logo-sub { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
-nav.scrolled .nav-logo-sub { color: var(--muted); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo-img { height: 52px; width: auto; flex-shrink: 0; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); transition: opacity 0.2s; }
+.nav-logo-img:hover { opacity: 0.88; }
+nav.scrolled .nav-logo-img { filter: none; }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 nav.scrolled .nav-links a { color: var(--muted); }
@@ -299,14 +292,14 @@ nav.scrolled .nav-links a:hover { color: var(--navy); }
 .cf-select { appearance: none; cursor: pointer; }
 .btn-contact { background: var(--navy); color: white; padding: 16px; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
 .btn-contact:hover { background: var(--navy2); transform: translateY(-1px); }
-.contact-success { display: none; background: var(--sage-pale); border: 1px solid rgba(74,124,89,0.3); border-radius: 8px; padding: 16px; color: var(--sage); font-size: 15px; font-weight: 600; }
+.contact-success { display: none; background: var(--sage-pale); border: 1px solid rgba(74,124,89,0.3); border-radius: 12px; padding: 24px; color: var(--sage); font-size: 15px; font-weight: 600; text-align: left; }
 .contact-success.show { display: block; }
 
 /* FOOTER */
 footer { background: var(--navy); padding: 48px 60px; border-top: 1px solid rgba(255,255,255,0.06); }
 .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
-.footer-shield { width: 36px; height: 36px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.footer-logo-img { height: 44px; width: auto; display: block; opacity: 0.92; }
 .footer-name { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 800; color: var(--white); }
 .footer-sub { font-size: 11px; color: rgba(255,255,255,0.35); }
 footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
@@ -342,13 +335,9 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">
-    <div class="nav-logo-shield">🛡️</div>
-    <div class="nav-logo-text">
-      <div class="nav-logo-name">PDPM Audit Optimization Group™</div>
-      <div class="nav-logo-sub">Compliance Defense for SNFs</div>
-    </div>
-  </div>
+  <a href="#" class="nav-logo" aria-label="PDPM Audit Optimization Group — Home">
+    <img src="logo.jpg" alt="PDPM Audit Optimization Group™" class="nav-logo-img">
+  </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#audits">Audit Defense</a></li>
@@ -589,28 +578,31 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
         <tr>
           <td>Small (&le;75 beds)</td>
           <td>$3,500/mo</td>
-          <td>Unlimited audits &bull; RevOptix1 access &bull; Documentation scoring &bull; Monthly compliance review &bull; Standard support<br><span class="pricing-milestone">Milestone bonuses available</span></td>
+          <td>Unlimited audits &bull; RevOptix1 access &bull; Documentation scoring &bull; Monthly compliance review &bull; Standard support</td>
         </tr>
         <tr>
           <td>Medium (76&ndash;150 beds)</td>
           <td>$5,000/mo</td>
-          <td>Everything in Small &bull; Priority turnaround &bull; Quarterly strategy review &bull; Enhanced reporting<br><span class="pricing-milestone">Enhanced milestone bonuses</span></td>
+          <td>Everything in Small &bull; Priority turnaround &bull; Quarterly strategy review &bull; Enhanced reporting</td>
         </tr>
         <tr>
           <td>Large (151&ndash;200 beds)</td>
           <td>$8,000/mo</td>
-          <td>Everything in Medium &bull; Dedicated specialist &bull; Custom templates &bull; Monthly leadership briefings<br><span class="pricing-milestone">Premium milestone bonuses</span></td>
+          <td>Everything in Medium &bull; Dedicated specialist &bull; Custom templates &bull; Monthly leadership briefings</td>
         </tr>
         <tr>
           <td>Enterprise (201+ beds)</td>
           <td>$12,000/mo</td>
-          <td>Everything in Large &bull; Multi-facility analytics &bull; Corporate strategy &bull; Custom workflow engineering<br><span class="pricing-milestone">Enterprise milestone program</span></td>
+          <td>Everything in Large &bull; Multi-facility analytics &bull; Corporate strategy &bull; Custom workflow engineering</td>
         </tr>
       </tbody>
-    </table>
+     </table>
+    <div style="margin-top:24px; background:var(--gold-pale); border:1px solid rgba(200,146,42,0.3); border-radius:10px; padding:20px 24px;">
+      <p style="font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">Achievement Enhancement Incentives</p>
+      <p style="font-size:14px; color:var(--text); line-height:1.7;">PDPM Audit Group and RevOptix1 have a fixed&#8209;fee incentive advantage program for meeting jointly defined operational milestones. Facilities pay PDPM Audit Group and RevOptix1 incentives structured quarterly, semi&#8209;annually, or annually.</p>
+    </div>
   </div>
 </section>
-
 <!-- REVOPTIX BRIDGE -->
 <section class="bridge">
   <div class="bridge-inner reveal">
@@ -673,7 +665,27 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
         <button type="submit" class="btn-contact">Request Consultation →</button>
       </div>
     </form>
-    <div class="contact-success" id="contactSuccess">✓ Thank you — we'll be in touch within 24 hours to schedule your free consultation.</div>
+    <div class="contact-success" id="contactSuccess">
+      <div style="font-size:20px;font-weight:800;color:#1a3d2b;margin-bottom:8px;">✓ Request Received!</div>
+      <p style="font-size:15px;font-weight:400;color:#374151;margin-bottom:20px;">Thank you — a member of our team will reach out within 24 hours to confirm your consultation.</p>
+      <div style="background:#fff;border:1px solid rgba(74,124,89,0.3);border-radius:10px;padding:20px;margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#0b1f45;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">📅 Available Consultation Times (Mountain Time)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:#f0f7f2;border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-weight:700;color:#1a3d2b;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Morning</div>
+            <div style="color:#4a7c59;font-size:17px;font-weight:700;margin:6px 0;">9:00 – 11:00 AM</div>
+            <div style="color:#6b7280;font-size:12px;">Monday – Friday</div>
+          </div>
+          <div style="background:#f0f7f2;border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-weight:700;color:#1a3d2b;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Afternoon</div>
+            <div style="color:#4a7c59;font-size:17px;font-weight:700;margin:6px 0;">2:00 – 4:00 PM</div>
+            <div style="color:#6b7280;font-size:12px;">Monday – Friday</div>
+          </div>
+        </div>
+        <a href="mailto:consultation@pdpmauditgroup.com?subject=Consultation%20Appointment%20Request&body=Hello%2C%0A%0AI%20just%20submitted%20the%20consultation%20form%20on%20your%20website%20and%20would%20like%20to%20confirm%20my%20appointment.%0A%0AMy%20preferred%20day%3A%20%0AMy%20preferred%20time%20(9-11am%20or%202-4pm%20MST)%3A%20%0A%0AThank%20you!" style="display:block;background:#c8922a;color:#fff;text-align:center;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;">📧 Pick Your Day &amp; Time →</a>
+      </div>
+      <p style="font-size:13px;color:#6b7280;">Questions? Email us at <a href="mailto:consultation@pdpmauditgroup.com" style="color:#c8922a;font-weight:600;">consultation@pdpmauditgroup.com</a></p>
+    </div>
   </div>
 </section>
 
@@ -681,7 +693,9 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-shield">🛡️</div>
+      <a href="#" aria-label="PDPM Audit Optimization Group — Home">
+        <img src="logo.jpg" alt="PDPM Audit Optimization Group™" class="footer-logo-img">
+      </a>
       <div>
         <div class="footer-name">PDPM Audit Optimization Group™</div>
         <div class="footer-sub">Compliance Defense for Skilled Nursing Facilities</div>
@@ -692,7 +706,7 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
       <a href="#services">Services</a>
       <a href="#audits">Audit Defense</a>
       <a href="https://revoptix1.com" target="_blank">RevOptix1™</a>
-      <a href="mailto:info@pdpmauditgroup.com">Contact</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>

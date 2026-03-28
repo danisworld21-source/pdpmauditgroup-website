@@ -6,328 +6,1202 @@
 <title>PDPM Audit Optimization Group™ — Compliance Defense for SNFs</title>
 <meta name="description" content="PDPM Audit Optimization Group™ defends skilled nursing facilities against RAC, TPE, OIG, CERT, and state survey audits. Expert compliance, staff training, and MDS/PDPM optimization.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   LUXURY DESIGN SYSTEM
+   ============================================================ */
 :root {
-  --navy: #0b1f45; --navy2: #142b5c; --navy3: #0d2850;
-  --gold: #c8922a; --gold2: #e8a830; --gold-pale: #fef8ec;
-  --forest: #1a3d2b; --forest2: #245238;
-  --sage: #4a7c59; --sage2: #5a9169;
-  --sage-pale: #f0f7f2;
-  --white: #ffffff; --gray: #f4f4f2; --gray2: #e8e6e0;
-  --text: #111827; --muted: #6b7280; --border: #e5e3dd;
-  --red: #c0392b;
+  /* Core palette */
+  --ink:       #0a0f1e;
+  --ink2:      #111827;
+  --ink3:      #1c2333;
+  --gold:      #b8962e;
+  --gold2:     #d4af50;
+  --gold3:     #f0d080;
+  --gold-pale: #fdf8ee;
+  --champagne: #f5edd8;
+  --platinum:  #c8cdd8;
+  --cream:     #fafaf8;
+  --white:     #ffffff;
+  --muted:     #6b7280;
+  --muted2:    #9ca3af;
+  --border:    #e8e4dc;
+  --border-dk: rgba(200,160,60,0.18);
+  --text:      #1a1a2e;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 
-/* NAV */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 60px;
-  transition: all 0.3s;
+  padding: 22px 72px;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 nav.scrolled {
-  background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+  background: rgba(250,250,248,0.96);
+  backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
-  padding: 14px 60px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  padding: 14px 72px;
+  box-shadow: 0 1px 32px rgba(10,15,30,0.07);
 }
-.nav-logo { display: flex; align-items: center; text-decoration: none; }
-.nav-logo-img { height: 52px; width: auto; flex-shrink: 0; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); transition: opacity 0.2s; }
-.nav-logo-img:hover { opacity: 0.88; }
+.nav-logo {
+  display: flex; align-items: center;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 50px; width: auto;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.3));
+  transition: all 0.3s;
+}
+.nav-logo-img:hover { opacity: 0.85; }
 nav.scrolled .nav-logo-img { filter: none; }
-.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-.nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+
+.nav-links {
+  display: flex; align-items: center; gap: 36px; list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 13.5px; font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
 nav.scrolled .nav-links a { color: var(--muted); }
 .nav-links a:hover { color: var(--gold2); }
-nav.scrolled .nav-links a:hover { color: var(--navy); }
-.nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 22px; border-radius: 6px; font-weight: 700 !important; font-size: 14px !important; transition: all 0.2s !important; }
-.nav-cta:hover { background: var(--gold2) !important; transform: translateY(-1px); }
+nav.scrolled .nav-links a:hover { color: var(--ink); }
 
-/* HERO */
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--white) !important;
+  padding: 10px 24px !important;
+  border-radius: 2px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  transition: all 0.25s !important;
+  box-shadow: 0 2px 16px rgba(184,150,46,0.3) !important;
+}
+.nav-cta:hover {
+  background: var(--gold2) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 24px rgba(184,150,46,0.4) !important;
+  color: var(--white) !important;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(160deg, var(--forest) 0%, var(--navy) 50%, var(--navy2) 100%);
+  background: var(--ink);
   display: flex; align-items: center;
-  padding: 130px 60px 80px;
+  padding: 140px 72px 100px;
   position: relative; overflow: hidden;
 }
-.hero-dots {
+
+/* Subtle noise texture */
+.hero::before {
+  content: '';
   position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(200,146,42,0.08) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-.hero-glow {
-  position: absolute; top: -200px; right: -200px;
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(74,124,89,0.15) 0%, transparent 70%);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
   pointer-events: none;
 }
-.hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
-.hero-kicker {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(74,124,89,0.2); border: 1px solid rgba(74,124,89,0.4);
-  border-radius: 100px; padding: 6px 16px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #86c99a; margin-bottom: 24px;
-  opacity: 0; animation: rise 0.6s 0.2s ease forwards;
+
+/* Diagonal gold accent line */
+.hero-rule {
+  position: absolute;
+  top: 0; right: 18%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(184,150,46,0.25) 30%, rgba(184,150,46,0.08) 70%, transparent 100%);
+  pointer-events: none;
 }
-.kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: #86c99a; animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-rule2 {
+  position: absolute;
+  top: 0; right: 36%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(184,150,46,0.08) 40%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Radial glow */
+.hero-glow {
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 70vw; height: 70vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(184,150,46,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 1240px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 420px; gap: 100px; align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
+}
+.hero-eyebrow-line {
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+.hero-eyebrow-text {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold2);
+}
+
 .hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(44px, 5.5vw, 76px);
-  font-weight: 900; line-height: 1.0;
-  color: var(--white); letter-spacing: -0.03em;
-  margin-bottom: 24px;
-  opacity: 0; animation: rise 0.7s 0.35s ease forwards;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(46px, 5.5vw, 78px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards;
 }
-.hero h1 .accent { color: var(--gold2); font-style: italic; }
-.hero h1 .dim { color: rgba(255,255,255,0.35); display: block; font-style: italic; }
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold2);
+}
+.hero h1 .hero-h1-dim {
+  display: block;
+  color: rgba(255,255,255,0.28);
+  font-style: italic;
+}
+
+.hero-divider {
+  width: 48px; height: 1px;
+  background: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.7s 0.4s ease forwards;
+}
+
 .hero-sub {
-  font-size: 18px; font-weight: 300;
-  color: rgba(255,255,255,0.6); line-height: 1.75;
-  max-width: 520px; margin-bottom: 40px;
-  opacity: 0; animation: rise 0.7s 0.5s ease forwards;
+  font-size: 17px; font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.85;
+  max-width: 500px;
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.7s 0.5s ease forwards;
 }
-.hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 600; }
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: rise 0.7s 0.65s ease forwards; }
-.btn-gold-hero { background: var(--gold); color: var(--navy); padding: 16px 36px; border-radius: 6px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.25s; display: inline-block; box-shadow: 0 4px 24px rgba(200,146,42,0.35); }
-.btn-gold-hero:hover { background: var(--gold2); transform: translateY(-2px); }
-.btn-ghost-hero { border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); padding: 16px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-block; }
-.btn-ghost-hero:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.hero-sub strong { color: rgba(255,255,255,0.85); font-weight: 500; }
 
-/* HERO SHIELD CARD */
-.shield-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px; padding: 36px 32px;
-  backdrop-filter: blur(10px);
-  opacity: 0; animation: slideL 0.8s 0.5s ease forwards;
+.hero-ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.7s 0.65s ease forwards;
 }
-@keyframes slideL { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
-.shield-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold2); margin-bottom: 20px; }
-.audit-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 14px; border-radius: 8px; margin-bottom: 8px;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
-  transition: all 0.2s;
+.btn-primary {
+  background: var(--gold);
+  color: var(--white);
+  padding: 16px 40px;
+  border-radius: 2px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+  box-shadow: 0 4px 28px rgba(184,150,46,0.35);
 }
-.audit-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(200,146,42,0.3); }
-.audit-icon { font-size: 18px; flex-shrink: 0; }
-.audit-badge { margin-left: auto; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.06em; }
-.badge-def { background: rgba(74,124,89,0.3); color: #86c99a; }
-.badge-warn { background: rgba(200,146,42,0.2); color: var(--gold2); }
-.shield-bottom {
-  margin-top: 16px; padding: 14px 16px;
-  background: rgba(200,146,42,0.1);
-  border: 1px solid rgba(200,146,42,0.25);
-  border-radius: 8px;
-  font-size: 13px; color: var(--gold2); font-weight: 600; text-align: center;
+.btn-primary:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(184,150,46,0.45);
+}
+.btn-outline-light {
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.65);
+  padding: 16px 32px;
+  border-radius: 2px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: inline-block;
+}
+.btn-outline-light:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: var(--white);
 }
 
-@keyframes rise { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
-/* PROOF STRIP */
-.proof { display: flex; background: var(--white); border-bottom: 1px solid var(--border); }
-.proof-item { flex: 1; padding: 32px 24px; text-align: center; border-right: 1px solid var(--border); }
-.proof-item:last-child { border-right: none; }
-.proof-num { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 5px; }
-.proof-num span { color: var(--sage); }
-.proof-lbl { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
-
-/* SERVICES */
-.services { padding: 110px 60px; background: var(--gray); }
-.services-inner { max-width: 1200px; margin: 0 auto; }
-.section-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 10px; }
-.section-h { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 56px; letter-spacing: -0.02em; }
-.section-h em { font-style: italic; color: var(--gold); }
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.service-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 14px; padding: 36px 30px;
-  transition: all 0.3s; position: relative; overflow: hidden;
+/* Hero shield panel */
+.shield-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,150,46,0.2);
+  border-radius: 4px;
+  padding: 36px 32px;
+  opacity: 0; animation: fadeIn 1s 0.6s ease forwards;
 }
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--sage), var(--gold));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
-}
-.service-card:hover { box-shadow: 0 12px 40px rgba(11,31,69,0.1); transform: translateY(-4px); }
-.service-card:hover::before { transform: scaleX(1); }
-.service-icon { font-size: 36px; margin-bottom: 16px; }
-.service-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-.service-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.stag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: var(--sage-pale); color: var(--sage); border: 1px solid rgba(74,124,89,0.2); cursor: pointer; transition: background 0.15s, color 0.15s, transform 0.12s, border-color 0.15s; }
-.stag:hover { background: #2d7a47 !important; color: #fff !important; border-color: #2d7a47 !important; transform: translateY(-1px); }
-.stag:active { transform: translateY(0); }
-/* STAG MODAL */
-#stag-modal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; padding: 16px; }
-#stag-modal.open { display: flex; }
-#stag-modal-backdrop { position: absolute; inset: 0; background: rgba(0,10,20,0.72); backdrop-filter: blur(3px); cursor: pointer; }
-#stag-modal-box { position: relative; z-index: 1; background: #fff; border-radius: 16px; padding: 32px 28px 28px; max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.35); animation: stagSlideUp 0.22s cubic-bezier(0.22,0.68,0,1.2) both; }
-@keyframes stagSlideUp { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
-#stag-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; line-height: 1; color: #888; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
-#stag-modal-close:hover { background: #f0f0f0; color: #333; }
-#stag-modal-abbr { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: #edf7f0; color: #2d7a47; border: 1px solid rgba(74,124,89,0.25); margin-bottom: 10px; letter-spacing: 0.04em; }
-#stag-modal-full { font-size: 20px; font-weight: 800; color: #001a33; margin-bottom: 18px; line-height: 1.25; }
-.stag-modal-section { margin-top: 14px; }
-.stag-modal-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c8860a; margin-bottom: 6px; }
-#stag-modal-def, #stag-modal-service { font-size: 14px; color: #374151; line-height: 1.65; }
-/* PRICING */
-.pricing { padding: 110px 60px; background: var(--white); }
-.pricing-inner { max-width: 1100px; margin: 0 auto; }
-.pricing-table { width: 100%; border-collapse: collapse; font-family: 'DM Sans', sans-serif; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 40px rgba(11,31,69,0.1); }
-.pricing-table thead tr { background: var(--navy); color: var(--white); }
-.pricing-table thead th { padding: 18px 22px; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
-.pricing-table tbody tr:nth-child(odd) { background: var(--gray); }
-.pricing-table tbody tr:nth-child(even) { background: var(--white); }
-.pricing-table tbody tr:hover { background: var(--sage-pale); }
-.pricing-table td { padding: 20px 22px; vertical-align: top; font-size: 14px; line-height: 1.7; color: var(--text); border-bottom: 1px solid var(--border); }
-.pricing-table td:first-child { font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; }
-.pricing-table td:nth-child(2) { font-weight: 700; font-size: 16px; color: var(--navy); white-space: nowrap; }
-.pricing-milestone { color: var(--gold); font-weight: 700; }
-@media (max-width: 960px) { .pricing { padding: 70px 24px; } .pricing-table td:first-child, .pricing-table td:nth-child(2) { white-space: normal; } }
-
-/* AUDIT TYPES */
-.audits { padding: 110px 60px; background: var(--navy); }
-.audits-inner { max-width: 1200px; margin: 0 auto; }
-.audits .section-h { color: var(--white); }
-.audits .section-kicker { color: var(--gold2); }
-.audit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.audit-box {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px; padding: 24px 20px;
-  transition: all 0.2s;
-}
-.audit-box:hover { background: rgba(200,146,42,0.08); border-color: rgba(200,146,42,0.3); transform: translateY(-2px); }
-.audit-box-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; color: var(--gold2); margin-bottom: 6px; }
-.audit-box-full { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
-.audit-box-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
-
-/* TRAINING */
-.training { padding: 110px 60px; background: var(--white); }
-.training-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
-.training-left h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.08; margin-bottom: 18px; letter-spacing: -0.02em; }
-.training-left h2 em { font-style: italic; color: var(--gold); }
-.training-left p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
-.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
-.role-item {
+.sp-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
   display: flex; align-items: center; gap: 10px;
-  padding: 12px 14px; background: var(--gray);
-  border: 1px solid var(--border); border-radius: 8px;
-  font-size: 13px; font-weight: 600; color: var(--navy);
-  transition: all 0.2s;
 }
-.role-item:hover { background: var(--sage-pale); border-color: rgba(74,124,89,0.3); }
-.role-icon { font-size: 18px; flex-shrink: 0; }
-.training-visual {
-  background: var(--navy); border-radius: 16px; padding: 36px 32px;
-  box-shadow: 0 16px 48px rgba(11,31,69,0.15);
+.sp-label::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: rgba(184,150,46,0.25);
 }
-.tv-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-.schedule-item {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+.audit-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 13.5px; font-weight: 500;
+  color: rgba(255,255,255,0.75);
 }
-.schedule-item:last-child { border-bottom: none; }
-.schedule-freq { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold2); min-width: 80px; margin-top: 2px; }
-.schedule-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
-.schedule-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
-
-/* REVOPTIX BRIDGE */
-.bridge { padding: 110px 60px; background: var(--sage-pale); }
-.bridge-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-.bridge-inner h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; }
-.bridge-inner h2 em { font-style: italic; color: var(--gold); }
-.bridge-inner p { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 48px; line-height: 1.75; font-weight: 300; }
-.bridge-cards { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; max-width: 900px; margin: 0 auto; }
-.bridge-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 14px; padding: 32px 28px; text-align: left;
+.audit-row:last-of-type { border-bottom: none; }
+.audit-row-name { display: flex; align-items: center; gap: 10px; }
+.audit-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
 }
-.bc-logo { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
-.bc-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 12px; display: inline-block; }
-.tag-sage { background: var(--sage-pale); color: var(--sage); border: 1px solid rgba(74,124,89,0.2); }
-.tag-gold { background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(200,146,42,0.25); }
-.bc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.bridge-plus { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; color: var(--gold); }
-.bridge-result {
-  margin-top: 32px; background: var(--navy); border-radius: 14px; padding: 28px 32px;
-  display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 32px auto 0;
-  flex-wrap: wrap; gap: 16px;
+.audit-status {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #6fcf97;
+  background: rgba(111,207,151,0.1);
+  border: 1px solid rgba(111,207,151,0.2);
+  padding: 3px 9px; border-radius: 2px;
 }
-.br-text { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.5; max-width: 520px; }
-.br-text strong { color: var(--white); }
-.btn-bridge { background: var(--gold); color: var(--navy); padding: 14px 28px; border-radius: 6px; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.2s; }
-.btn-bridge:hover { background: var(--gold2); transform: translateY(-1px); }
+.sp-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(184,150,46,0.2);
+  font-size: 12px; font-weight: 500;
+  color: var(--gold2);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
 
-/* CTA */
-.cta { padding: 100px 60px; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(200,146,42,0.06) 1px, transparent 1px); background-size: 44px 44px; }
-.cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-.cta h2 { font-family: 'Fraunces', serif; font-size: clamp(36px, 6vw, 68px); font-weight: 900; color: var(--white); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 20px; }
-.cta h2 em { font-style: italic; color: var(--gold2); }
-.cta p { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 500px; margin: 0 auto 40px; line-height: 1.65; font-weight: 300; }
-.btn-cta-gold { background: var(--gold); color: var(--navy); padding: 18px 44px; border-radius: 6px; font-size: 16px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; box-shadow: 0 8px 32px rgba(200,146,42,0.25); }
-.btn-cta-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
-/* CONTACT */
-.contact { padding: 80px 60px; background: var(--gray); }
-.contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
-.contact h2 { font-family: 'Fraunces', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 900; color: var(--navy); margin-bottom: 14px; letter-spacing: -0.02em; }
-.contact p { font-size: 16px; color: var(--muted); margin-bottom: 36px; line-height: 1.65; }
-.contact-form { display: flex; flex-direction: column; gap: 14px; max-width: 500px; margin: 0 auto; }
-.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.cf-input { padding: 14px 18px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; background: var(--white); }
-.cf-input:focus { border-color: var(--sage); }
-.cf-input::placeholder { color: var(--muted); }
-.cf-select { appearance: none; cursor: pointer; }
-.btn-contact { background: var(--navy); color: white; padding: 16px; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-.btn-contact:hover { background: var(--navy2); transform: translateY(-1px); }
-.contact-success { display: none; background: var(--sage-pale); border: 1px solid rgba(74,124,89,0.3); border-radius: 12px; padding: 24px; color: var(--sage); font-size: 15px; font-weight: 600; text-align: left; }
-.contact-success.show { display: block; }
+/* ============================================================
+   PROOF STRIP
+   ============================================================ */
+.proof {
+  display: flex;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proof-item {
+  flex: 1;
+  padding: 40px 32px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.proof-item:last-child { border-right: none; }
+.proof-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px; font-weight: 700;
+  color: var(--ink); line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.proof-num span { color: var(--gold); }
+.proof-lbl {
+  font-size: 12px; font-weight: 500;
+  color: var(--muted);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
 
-/* FOOTER */
-footer { background: var(--navy); padding: 48px 60px; border-top: 1px solid rgba(255,255,255,0.06); }
-.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.footer-brand { display: flex; align-items: center; gap: 12px; }
-.footer-logo-img { height: 44px; width: auto; display: block; opacity: 0.92; }
-.footer-name { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 800; color: var(--white); }
-.footer-sub { font-size: 11px; color: rgba(255,255,255,0.35); }
-footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--gold2); }
+/* ============================================================
+   SECTION SHARED STYLES
+   ============================================================ */
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+.section-eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
+.section-eyebrow-text {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+}
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 56px;
+}
+.section-h em { font-style: italic; color: var(--gold); }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.up { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 960px) {
-  nav { padding: 14px 24px; }
-  nav.scrolled { padding: 12px 24px; }
-  .nav-links { display: none; }
-  .hero { padding: 110px 24px 60px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .proof { flex-wrap: wrap; }
-  .proof-item { flex: 1 1 140px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .audit-grid { grid-template-columns: repeat(2, 1fr); }
-  .training-inner { grid-template-columns: 1fr; gap: 40px; }
-  .role-grid { grid-template-columns: 1fr; }
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services {
+  padding: 120px 72px;
+  background: var(--cream);
+}
+.services-inner { max-width: 1240px; margin: 0 auto; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--white);
+  padding: 44px 36px;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.service-card:nth-child(3n) { border-right: none; }
+.service-card:nth-child(n+4) { border-bottom: none; }
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.service-card:hover {
+  background: var(--ink);
+  z-index: 1;
+}
+.service-card:hover::after { transform: scaleX(1); }
+.service-card:hover .service-name { color: var(--white); }
+.service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
+.service-card:hover .stag {
+  background: rgba(184,150,46,0.12) !important;
+  color: var(--gold2) !important;
+  border-color: rgba(184,150,46,0.25) !important;
+}
+
+.service-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  display: block;
+}
+.service-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px; font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+.service-desc {
+  font-size: 14px; font-weight: 400;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.stag {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 2px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  border: 1px solid rgba(184,150,46,0.2);
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: all 0.2s;
+}
+.stag:hover {
+  background: var(--gold) !important;
+  color: var(--white) !important;
+  border-color: var(--gold) !important;
+}
+
+/* ============================================================
+   AUDIT DEFENSE
+   ============================================================ */
+.audits {
+  padding: 120px 72px;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.audits::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35; pointer-events: none;
+}
+.audits-inner {
+  max-width: 1240px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.audits .section-h { color: var(--white); margin-bottom: 60px; }
+.audits .section-eyebrow-text { color: var(--gold2); }
+.audits .section-eyebrow-line { background: var(--gold2); }
+
+.audits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(184,150,46,0.12);
+  border: 1px solid rgba(184,150,46,0.12);
+}
+.audit-card {
+  background: rgba(255,255,255,0.02);
+  padding: 36px 28px;
+  transition: all 0.3s;
+  position: relative;
+}
+.audit-card:hover {
+  background: rgba(184,150,46,0.06);
+}
+.ac-abbr {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700;
+  color: var(--gold2);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.ac-full {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+.ac-desc {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   TRAINING
+   ============================================================ */
+.training {
+  padding: 120px 72px;
+  background: var(--cream);
+}
+.training-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
+}
+.training .section-h { margin-bottom: 28px; }
+.training > .training-inner > div > p {
+  font-size: 16px; font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 40px;
+}
+.role-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--border);
+}
+.role-item {
+  padding: 16px 20px;
+  font-size: 13.5px; font-weight: 500;
+  color: var(--ink2);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+  transition: background 0.2s;
+}
+.role-item:nth-child(2n) { border-right: none; }
+.role-item:nth-child(7), .role-item:nth-child(8) { border-bottom: none; }
+.role-item:hover { background: var(--gold-pale); }
+.role-icon {
+  font-size: 16px; flex-shrink: 0;
+  width: 28px; text-align: center;
+}
+
+.training-visual {
+  background: var(--ink);
+  border: 1px solid rgba(184,150,46,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tv-header {
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(184,150,46,0.15);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+}
+.tv-header::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.schedule-item {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.2s;
+}
+.schedule-item:last-child { border-bottom: none; }
+.schedule-item:hover { background: rgba(184,150,46,0.04); }
+.schedule-freq {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(184,150,46,0.1);
+  border: 1px solid rgba(184,150,46,0.2);
+  padding: 4px 10px; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0;
+  margin-top: 2px;
+  min-width: 80px; text-align: center;
+}
+.schedule-name {
+  font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 5px;
+}
+.schedule-desc {
+  font-size: 12.5px; font-weight: 300;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.pricing {
+  padding: 120px 72px;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+.pricing-inner { max-width: 1240px; margin: 0 auto; }
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.price-card {
+  padding: 44px 32px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: all 0.3s;
+}
+.price-card:last-child { border-right: none; }
+.price-card:hover { background: var(--gold-pale); }
+.price-card.featured {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.price-card.featured:hover { background: var(--ink3); }
+.pc-tier {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.price-card.featured .pc-tier { color: var(--gold2); }
+.pc-beds {
+  font-size: 13px; font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.price-card.featured .pc-beds { color: rgba(255,255,255,0.4); }
+.pc-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+.price-card.featured .pc-price { color: var(--white); }
+.pc-per {
+  font-size: 12px; font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.price-card.featured .pc-per { color: rgba(255,255,255,0.35); }
+.pc-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 24px;
+}
+.price-card.featured .pc-divider { background: rgba(255,255,255,0.08); }
+.pc-features {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pc-features li {
+  font-size: 13px; font-weight: 400;
+  color: var(--muted);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+.price-card.featured .pc-features li { color: rgba(255,255,255,0.5); }
+.pc-check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: rgba(184,150,46,0.15);
+  border: 1px solid rgba(184,150,46,0.3);
+  flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: var(--gold);
+}
+.price-card.featured .pc-check {
+  background: rgba(184,150,46,0.2);
+  border-color: rgba(184,150,46,0.4);
+}
+
+.incentive-box {
+  border: 1px solid rgba(184,150,46,0.25);
+  background: var(--gold-pale);
+  padding: 28px 36px;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.incentive-icon {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(184,150,46,0.4);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 16px;
+}
+.incentive-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.incentive-text {
+  font-size: 14px; font-weight: 400;
+  color: var(--ink2);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   REVOPTIX BRIDGE
+   ============================================================ */
+.bridge {
+  padding: 120px 72px;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.bridge::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35; pointer-events: none;
+}
+.bridge-inner {
+  max-width: 1240px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.bridge .section-h { color: var(--white); margin-bottom: 16px; }
+.bridge .section-eyebrow-text { color: var(--gold2); }
+.bridge .section-eyebrow-line { background: var(--gold2); }
+.bridge-sub {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 64px;
+}
+
+.bridge-cards {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
+  align-items: stretch;
+  border: 1px solid rgba(184,150,46,0.15);
+  margin-bottom: 40px;
+}
+.bridge-card {
+  padding: 48px 44px;
+  background: rgba(255,255,255,0.02);
+}
+.bridge-card:first-child {
+  border-right: 1px solid rgba(184,150,46,0.1);
+}
+.bridge-card:last-child {
+  border-left: 1px solid rgba(184,150,46,0.1);
+}
+.bc-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.bc-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 2px;
+  margin-bottom: 20px;
+}
+.tag-gold { background: rgba(184,150,46,0.15); color: var(--gold2); border: 1px solid rgba(184,150,46,0.25); }
+.tag-platinum { background: rgba(200,205,216,0.1); color: var(--platinum); border: 1px solid rgba(200,205,216,0.2); }
+.bc-desc {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+}
+.bridge-plus-col {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 32px;
+  border-right: 1px solid rgba(184,150,46,0.1);
+}
+.bridge-plus {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px; font-weight: 300;
+  color: rgba(184,150,46,0.4);
+  line-height: 1;
+}
+.bridge-result {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px;
+  padding: 32px 44px;
+  border: 1px solid rgba(184,150,46,0.15);
+  background: rgba(184,150,46,0.04);
+}
+.br-text {
+  font-size: 15px; font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  max-width: 600px;
+}
+.br-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.btn-bridge {
+  background: var(--gold);
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 2px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+.btn-bridge:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+.cta-section {
+  padding: 120px 72px;
+  background: var(--cream);
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.cta-section h2 em { font-style: italic; color: var(--gold); }
+.cta-section p {
+  font-size: 17px; font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 540px;
+  margin: 0 auto 44px;
+}
+.btn-cta-gold {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  padding: 18px 52px;
+  border-radius: 2px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 32px rgba(184,150,46,0.3);
+}
+.btn-cta-gold:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 48px rgba(184,150,46,0.4);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  padding: 120px 72px;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35; pointer-events: none;
+}
+.contact-inner {
+  max-width: 680px; margin: 0 auto;
+  position: relative; z-index: 1;
+  text-align: center;
+}
+.contact h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.contact-sub {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.75;
+  margin-bottom: 52px;
+}
+.contact-divider {
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 52px;
+}
+
+.contact-form {
+  display: flex; flex-direction: column; gap: 14px;
+  text-align: left;
+}
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cf-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 16px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  outline: none;
+  transition: all 0.25s;
+}
+.cf-input::placeholder { color: rgba(255,255,255,0.25); }
+.cf-input:focus {
+  border-color: rgba(184,150,46,0.5);
+  background: rgba(255,255,255,0.06);
+}
+.cf-select { cursor: pointer; appearance: none; }
+.cf-select option { background: var(--ink2); color: var(--white); }
+
+.btn-contact {
+  width: 100%;
+  background: var(--gold);
+  color: var(--white);
+  border: none; cursor: pointer;
+  padding: 18px 32px;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(184,150,46,0.25);
+}
+.btn-contact:hover {
+  background: var(--gold2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 36px rgba(184,150,46,0.35);
+}
+.btn-contact:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.contact-success {
+  display: none;
+  text-align: center;
+  padding: 48px 0;
+}
+.contact-success.show { display: block; }
+.cs-check {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,150,46,0.4);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 22px; color: var(--gold2);
+}
+.cs-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.cs-sub {
+  font-size: 15px; font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.cs-calendar {
+  border: 1px solid rgba(184,150,46,0.2);
+  background: rgba(255,255,255,0.02);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.cs-cal-title {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.cs-cal-title::after { content: ''; flex: 1; height: 1px; background: rgba(184,150,46,0.2); }
+.cs-slots {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 20px;
+}
+.cs-slot {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 16px;
+  text-align: center;
+}
+.cs-slot-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 6px;
+}
+.cs-slot-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--gold2);
+  margin-bottom: 4px;
+}
+.cs-slot-days {
+  font-size: 11px; color: rgba(255,255,255,0.3);
+}
+.btn-cal {
+  display: block;
+  background: var(--gold);
+  color: var(--white);
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 2px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.btn-cal:hover { background: var(--gold2); }
+.cs-email {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.3);
+}
+.cs-email a { color: var(--gold2); font-weight: 500; text-decoration: none; }
+.cs-email a:hover { color: var(--gold3); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: #060a14;
+  border-top: 1px solid rgba(184,150,46,0.15);
+  padding: 60px 72px;
+}
+.footer-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+}
+.footer-brand {
+  display: flex; align-items: center; gap: 16px;
+}
+.footer-logo-img {
+  height: 44px; width: auto;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.footer-logo-img:hover { opacity: 1; }
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 3px;
+}
+.footer-tagline {
+  font-size: 12px; font-weight: 300;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.02em;
+}
+.footer-copy {
+  font-size: 12px; font-weight: 300;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.6;
+  text-align: center;
+}
+.footer-links {
+  display: flex; gap: 28px; flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold2); }
+
+/* ============================================================
+   STAG MODAL
+   ============================================================ */
+#stag-modal { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; padding: 16px; }
+#stag-modal.open { display: flex; }
+#stag-modal-backdrop { position: absolute; inset: 0; background: rgba(6,10,20,0.85); backdrop-filter: blur(4px); cursor: pointer; }
+#stag-modal-box {
+  position: relative; z-index: 1;
+  background: var(--white);
+  border-top: 3px solid var(--gold);
+  padding: 36px 32px 32px;
+  max-width: 500px; width: 100%;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: modalUp 0.25s cubic-bezier(0.22,0.68,0,1.2) both;
+}
+@keyframes modalUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+#stag-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none;
+  font-size: 20px; color: var(--muted);
+  cursor: pointer; padding: 4px 8px;
+  transition: color 0.2s;
+}
+#stag-modal-close:hover { color: var(--ink); }
+#stag-modal-abbr {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 2px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  border: 1px solid rgba(184,150,46,0.25);
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+#stag-modal-full {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+.stag-modal-section { margin-top: 16px; }
+.stag-modal-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.stag-modal-label::after { content: ''; flex: 1; height: 1px; background: rgba(184,150,46,0.2); }
+#stag-modal-def, #stag-modal-service {
+  font-size: 14px; font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  nav { padding: 18px 40px; }
+  nav.scrolled { padding: 12px 40px; }
+  .hero { padding: 130px 40px 80px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+  .shield-panel { display: none; }
+  .services { padding: 80px 40px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card:nth-child(3n) { border-right: 1px solid var(--border); }
+  .service-card:nth-child(2n) { border-right: none; }
+  .audits { padding: 80px 40px; }
+  .audits-grid { grid-template-columns: repeat(2, 1fr); }
+  .training { padding: 80px 40px; }
+  .training-inner { grid-template-columns: 1fr; gap: 60px; }
+  .pricing { padding: 80px 40px; }
+  .pricing-cards { grid-template-columns: 1fr 1fr; }
+  .price-card:nth-child(2) { border-right: none; }
+  .price-card:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .price-card:nth-child(4) { border-right: none; border-top: 1px solid var(--border); }
+  .bridge { padding: 80px 40px; }
   .bridge-cards { grid-template-columns: 1fr; }
-  .bridge-plus { display: none; }
-  .services,.audits,.training,.bridge,.cta,.contact { padding: 70px 24px; }
-  footer { padding: 36px 24px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .bridge-card:first-child { border-right: none; border-bottom: 1px solid rgba(184,150,46,0.1); }
+  .bridge-card:last-child { border-left: none; border-top: 1px solid rgba(184,150,46,0.1); }
+  .bridge-plus-col { display: none; }
+  .bridge-result { flex-direction: column; gap: 24px; }
+  .cta-section { padding: 80px 40px; }
+  .contact { padding: 80px 40px; }
+  footer { padding: 48px 40px; }
+  .footer-inner { flex-direction: column; text-align: center; gap: 24px; }
+  .footer-links { justify-content: center; }
+}
+@media (max-width: 680px) {
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { gap: 16px; }
+  .hero { padding: 120px 24px 60px; }
+  .services { padding: 60px 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { border-right: none !important; }
+  .audits { padding: 60px 24px; }
+  .audits-grid { grid-template-columns: 1fr; }
+  .training { padding: 60px 24px; }
+  .pricing { padding: 60px 24px; }
+  .pricing-cards { grid-template-columns: 1fr; }
+  .price-card { border-right: none !important; border-top: 1px solid var(--border) !important; }
+  .price-card:first-child { border-top: none !important; }
+  .bridge { padding: 60px 24px; }
+  .cta-section { padding: 60px 24px; }
+  .contact { padding: 60px 24px; }
+  .cf-row { grid-template-columns: 1fr; }
+  .cs-slots { grid-template-columns: 1fr; }
+  footer { padding: 40px 24px; }
+  .proof { flex-direction: column; }
+  .proof-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .proof-item:last-child { border-bottom: none; }
+  .incentive-box { flex-direction: column; }
 }
 </style>
 </head>
@@ -349,33 +1223,62 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-dots"></div>
+  <div class="hero-rule"></div>
+  <div class="hero-rule2"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
-    <div>
-      <div class="hero-kicker"><span class="kicker-dot"></span> SNF Compliance Defense Specialists</div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">SNF Compliance Defense Specialists</span>
+      </div>
       <h1>
         When CMS Arrives,<br>
-        <span class="accent">Your Defense</span><br>
-        <span class="dim">Is Already Prepared.</span>
+        <em>Your Defense</em><br>
+        <span class="hero-h1-dim">Is Already Prepared.</span>
       </h1>
-      <p class="hero-sub">PDPM Audit Optimization Group™ defends skilled nursing facilities against <strong>every major federal and state audit type</strong> — while training your entire team to prevent findings before they happen.</p>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">
+        PDPM Audit Optimization Group™ defends skilled nursing facilities against
+        <strong>every major federal and state audit type</strong> — while training
+        your entire team to prevent findings before they happen.
+      </p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn-gold-hero">Schedule a Consultation</a>
-        <a href="#audits" class="btn-ghost-hero">See All Audit Types →</a>
+        <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+        <a href="#audits" class="btn-outline-light">See All Audit Types →</a>
       </div>
     </div>
-
-    <div class="shield-card">
-      <div class="shield-title">🛡️ Active Defense Coverage</div>
-      <div class="audit-item"><span class="audit-icon">⚡</span>RAC Audit Defense<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">🔍</span>TPE Review Defense<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">⚖️</span>OIG Compliance<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">📋</span>CERT Audit Defense<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">🏛️</span>State Survey Defense<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">📊</span>MDS / PDPM Optimization<span class="audit-badge badge-def">COVERED</span></div>
-      <div class="audit-item"><span class="audit-icon">⚠️</span>UPIC Investigation<span class="audit-badge badge-warn">COVERED</span></div>
-      <div class="shield-bottom">✓ Comprehensive defense — all audit types, all staff roles</div>
+    <div class="shield-panel">
+      <div class="sp-label">Active Defense Coverage</div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>RAC Audit Defense</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>TPE Review Defense</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>OIG Compliance</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>CERT Audit Defense</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>State Survey Defense</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>MDS / PDPM Optimization</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="audit-row">
+        <div class="audit-row-name"><div class="audit-dot"></div>UPIC Investigation</div>
+        <span class="audit-status">Covered</span>
+      </div>
+      <div class="sp-footer">Comprehensive defense — all audit types, all staff roles</div>
     </div>
   </div>
 </section>
@@ -383,7 +1286,7 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 <!-- PROOF STRIP -->
 <div class="proof">
   <div class="proof-item">
-    <div class="proof-num"><span>7+</span></div>
+    <div class="proof-num">7<span>+</span></div>
     <div class="proof-lbl">Major federal audit types<br>covered under one agreement</div>
   </div>
   <div class="proof-item">
@@ -404,97 +1307,130 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 <section class="services" id="services">
   <div class="services-inner">
     <div class="reveal">
-      <p class="section-kicker">Core Services</p>
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Core Services</span>
+      </div>
       <h2 class="section-h">Complete Compliance Coverage —<br><em>From Prevention to Defense</em></h2>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon">🛡️</div>
+        <span class="service-num">01</span>
         <div class="service-name">Compliance Audit Defense</div>
-        <div class="service-desc">When a federal or state audit arrives, your documentation is already organized, your staff is already trained, and your defense is already written. PDPM Audit Group™ prepares you before — not during.</div>
-        <div class="service-tags"><span class="stag">RAC</span><span class="stag">TPE</span><span class="stag">OIG</span><span class="stag">CERT</span><span class="stag">UPIC</span></div>
+        <p class="service-desc">When a federal or state audit arrives, your documentation is already organized, your staff is already trained, and your defense is already written. PDPM Audit Group™ prepares you before — not during.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about RAC">RAC</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about TPE">TPE</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about OIG">OIG</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about CERT">CERT</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about UPIC">UPIC</span>
+        </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">📊</div>
-        <div class="service-name">MDS & PDPM Optimization</div>
-        <div class="service-desc">Your MDS is the foundation of everything — reimbursement, quality metrics, audit exposure. We review every section, identify documentation patterns that create risk, and train your coordinators on current CMS expectations.</div>
-        <div class="service-tags"><span class="stag">MDS Review</span><span class="stag">PDPM</span><span class="stag">QRP</span><span class="stag">VBP</span></div>
+        <span class="service-num">02</span>
+        <div class="service-name">MDS &amp; PDPM Optimization</div>
+        <p class="service-desc">Your MDS is the foundation of everything — reimbursement, quality metrics, audit exposure. We review every section, identify documentation patterns that create risk, and train your coordinators on current CMS expectations.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about MDS Review">MDS Review</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about PDPM">PDPM</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about QRP">QRP</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about VBP">VBP</span>
+        </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🏛️</div>
+        <span class="service-num">03</span>
         <div class="service-name">State Survey Defense</div>
-        <div class="service-desc">State health inspections and federal certification surveys create significant compliance risk. We monitor regulatory changes in real time and ensure your facility documentation meets every current standard before surveyors arrive.</div>
-        <div class="service-tags"><span class="stag">Health Inspections</span><span class="stag">Life Safety</span><span class="stag">CMS Certification</span></div>
+        <p class="service-desc">State health inspections and federal certification surveys create significant compliance risk. We monitor regulatory changes in real time and ensure your facility documentation meets every current standard before surveyors arrive.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Health Inspections">Health Inspections</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Life Safety">Life Safety</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about CMS Certification">CMS Certification</span>
+        </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🎓</div>
+        <span class="service-num">04</span>
         <div class="service-name">Quarterly Staff Training</div>
-        <div class="service-desc">Every role in your facility — from the administrator to the dietary aide — receives targeted compliance training each quarter. Training is specific to their role, current regulations, and your facility's specific risk profile.</div>
-        <div class="service-tags"><span class="stag">All Roles</span><span class="stag">Quarterly</span><span class="stag">CMS Current</span></div>
+        <p class="service-desc">Every role in your facility — from the administrator to the dietary aide — receives targeted compliance training each quarter. Training is specific to their role, current regulations, and your facility's specific risk profile.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about All Roles">All Roles</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Quarterly">Quarterly</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about CMS Current">CMS Current</span>
+        </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">📅</div>
+        <span class="service-num">05</span>
         <div class="service-name">Monthly Leadership Meetings</div>
-        <div class="service-desc">Your administrator and leadership team receive a full compliance and billing performance report every month — with documented improvements, upcoming regulatory changes, and a proactive plan already in place.</div>
-        <div class="service-tags"><span class="stag">Monthly Reports</span><span class="stag">Billing Review</span><span class="stag">Proactive Planning</span></div>
+        <p class="service-desc">Your administrator and leadership team receive a full compliance and billing performance report every month — with documented improvements, upcoming regulatory changes, and a proactive plan already in place.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Monthly Reports">Monthly Reports</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Billing Review">Billing Review</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Proactive Planning">Proactive Planning</span>
+        </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🩺</div>
+        <span class="service-num">06</span>
         <div class="service-name">Physician Training</div>
-        <div class="service-desc">Physicians are one of the highest-risk documentation gaps in any SNF. Our 1-on-1 physician training sessions focus on order documentation, diagnosis specificity, and the connection between physician notes and MDS coding.</div>
-        <div class="service-tags"><span class="stag">1-on-1</span><span class="stag">Documentation</span><span class="stag">ICD-10</span></div>
+        <p class="service-desc">Physicians are one of the highest-risk documentation gaps in any SNF. Our 1-on-1 physician training sessions focus on order documentation, diagnosis specificity, and the connection between physician notes and MDS coding.</p>
+        <div class="service-tags">
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about 1-on-1">1-on-1</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about Documentation">Documentation</span>
+          <span class="stag" role="button" tabindex="0" aria-label="Learn about ICD-10">ICD-10</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AUDIT TYPES -->
+<!-- AUDIT DEFENSE -->
 <section class="audits" id="audits">
   <div class="audits-inner">
     <div class="reveal">
-      <p class="section-kicker">Audit Defense Coverage</p>
-      <h2 class="section-h" style="color:var(--white);">Every Audit Type.<br><em>One Defense Team.</em></h2>
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Audit Defense Coverage</span>
+      </div>
+      <h2 class="section-h">Every Audit Type.<br><em>One Defense Team.</em></h2>
     </div>
-    <div class="audit-grid">
-      <div class="audit-box reveal">
-        <div class="audit-box-name">RAC</div>
-        <div class="audit-box-full">Recovery Audit Contractor</div>
-        <div class="audit-box-desc">Post-payment reviews targeting improper Medicare and Medicaid payments. High-dollar overpayment demands with aggressive collection timelines.</div>
+    <div class="audits-grid reveal">
+      <div class="audit-card">
+        <div class="ac-abbr">RAC</div>
+        <div class="ac-full">Recovery Audit Contractor</div>
+        <p class="ac-desc">Post-payment reviews targeting improper Medicare and Medicaid payments. High-dollar overpayment demands with aggressive collection timelines.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">TPE</div>
-        <div class="audit-box-full">Targeted Probe & Educate</div>
-        <div class="audit-box-desc">CMS pre-payment and post-payment reviews targeting facilities with identified billing patterns. Escalates to Additional Documentation Requests.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">TPE</div>
+        <div class="ac-full">Targeted Probe &amp; Educate</div>
+        <p class="ac-desc">CMS pre-payment and post-payment reviews targeting facilities with identified billing patterns. Escalates to Additional Documentation Requests.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">OIG</div>
-        <div class="audit-box-full">Office of Inspector General</div>
-        <div class="audit-box-desc">Federal investigations into fraud, waste, and abuse. Can result in exclusion from Medicare/Medicaid and significant civil monetary penalties.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">OIG</div>
+        <div class="ac-full">Office of Inspector General</div>
+        <p class="ac-desc">Federal investigations into fraud, waste, and abuse. Can result in exclusion from Medicare/Medicaid and significant civil monetary penalties.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">CERT</div>
-        <div class="audit-box-full">Comprehensive Error Rate Testing</div>
-        <div class="audit-box-desc">Annual CMS program measuring improper payment rates. CERT findings directly influence future RAC and TPE targeting of your facility.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">CERT</div>
+        <div class="ac-full">Comprehensive Error Rate Testing</div>
+        <p class="ac-desc">Annual CMS program measuring improper payment rates. CERT findings directly influence future RAC and TPE targeting of your facility.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">UPIC</div>
-        <div class="audit-box-full">Unified Program Integrity Contractor</div>
-        <div class="audit-box-desc">Investigates potential fraud and abuse across Medicare and Medicaid. Has authority to request medical records and interview staff.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">UPIC</div>
+        <div class="ac-full">Unified Program Integrity Contractor</div>
+        <p class="ac-desc">Investigates potential fraud and abuse across Medicare and Medicaid. Has authority to request medical records and interview staff.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">RAI</div>
-        <div class="audit-box-full">Resident Assessment Instrument</div>
-        <div class="audit-box-desc">MDS accuracy and completion audits. Errors in RAI documentation directly affect PDPM reimbursement and quality measure scores.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">RAI</div>
+        <div class="ac-full">Resident Assessment Instrument</div>
+        <p class="ac-desc">MDS accuracy and completion audits. Errors in RAI documentation directly affect PDPM reimbursement and quality measure scores.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">PBJ</div>
-        <div class="audit-box-full">Payroll Based Journal</div>
-        <div class="audit-box-desc">CMS staffing data reporting compliance. Inaccurate PBJ submissions affect Five-Star ratings and trigger additional regulatory scrutiny.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">PBJ</div>
+        <div class="ac-full">Payroll Based Journal</div>
+        <p class="ac-desc">CMS staffing data reporting compliance. Inaccurate PBJ submissions affect Five-Star ratings and trigger additional regulatory scrutiny.</p>
       </div>
-      <div class="audit-box reveal">
-        <div class="audit-box-name">State</div>
-        <div class="audit-box-full">State Health Surveys</div>
-        <div class="audit-box-desc">Annual health inspections, complaint investigations, and life safety surveys. Deficiencies affect certification status and public Five-Star rating.</div>
+      <div class="audit-card">
+        <div class="ac-abbr">State</div>
+        <div class="ac-full">State Health Surveys</div>
+        <p class="ac-desc">Annual health inspections, complaint investigations, and life safety surveys. Deficiencies affect certification status and public Five-Star rating.</p>
       </div>
     </div>
   </div>
@@ -504,10 +1440,13 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 <section class="training" id="training">
   <div class="training-inner">
     <div class="reveal">
-      <p class="section-kicker">Staff Training Program</p>
-      <h2>Every Role.<br>Every Quarter.<br><em>Current with CMS.</em></h2>
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Staff Training Program</span>
+      </div>
+      <h2 class="section-h">Every Role.<br>Every Quarter.<br><em>Current with CMS.</em></h2>
       <p>Compliance failures almost always trace back to staff who were not trained on current requirements. PDPM Audit Group™ trains every role in your facility — not just clinical staff — every single quarter, with content updated to reflect the latest CMS guidance.</p>
-      <div class="role-grid">
+      <div class="role-grid" style="margin-top:32px;">
         <div class="role-item"><span class="role-icon">👔</span>Administrators</div>
         <div class="role-item"><span class="role-icon">📋</span>MDS Coordinators</div>
         <div class="role-item"><span class="role-icon">👩‍⚕️</span>Directors of Nursing</div>
@@ -515,11 +1454,11 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
         <div class="role-item"><span class="role-icon">💊</span>Nursing Staff</div>
         <div class="role-item"><span class="role-icon">🏃</span>Therapy Staff</div>
         <div class="role-item"><span class="role-icon">🤝</span>Social Workers</div>
-        <div class="role-item"><span class="role-icon">🍽️</span>Dietary & Support</div>
+        <div class="role-item"><span class="role-icon">🍽️</span>Dietary &amp; Support</div>
       </div>
     </div>
     <div class="training-visual reveal">
-      <div class="tv-label">📅 Ongoing Service Schedule</div>
+      <div class="tv-header">Ongoing Service Schedule</div>
       <div class="schedule-item">
         <div class="schedule-freq">Monthly</div>
         <div>
@@ -563,86 +1502,125 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
 <section class="pricing" id="pricing">
   <div class="pricing-inner">
     <div class="reveal">
-      <p class="section-kicker">Service Plans</p>
-      <h2 class="section-h">Transparent Pricing &mdash;<br><em>Built for Every SNF</em></h2>
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Service Plans</span>
+      </div>
+      <h2 class="section-h">Transparent Pricing —<br><em>Built for Every SNF</em></h2>
     </div>
-    <table class="pricing-table reveal">
-      <thead>
-        <tr>
-          <th>Plan</th>
-          <th>Monthly Price</th>
-          <th>Features</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Small (&le;75 beds)</td>
-          <td>$3,500/mo</td>
-          <td>Unlimited audits &bull; RevOptix1 access &bull; Documentation scoring &bull; Monthly compliance review &bull; Standard support</td>
-        </tr>
-        <tr>
-          <td>Medium (76&ndash;150 beds)</td>
-          <td>$5,000/mo</td>
-          <td>Everything in Small &bull; Priority turnaround &bull; Quarterly strategy review &bull; Enhanced reporting</td>
-        </tr>
-        <tr>
-          <td>Large (151&ndash;200 beds)</td>
-          <td>$8,000/mo</td>
-          <td>Everything in Medium &bull; Dedicated specialist &bull; Custom templates &bull; Monthly leadership briefings</td>
-        </tr>
-        <tr>
-          <td>Enterprise (201+ beds)</td>
-          <td>$12,000/mo</td>
-          <td>Everything in Large &bull; Multi-facility analytics &bull; Corporate strategy &bull; Custom workflow engineering</td>
-        </tr>
-      </tbody>
-     </table>
-    <div style="margin-top:24px; background:var(--gold-pale); border:1px solid rgba(200,146,42,0.3); border-radius:10px; padding:20px 24px;">
-      <p style="font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">Achievement Enhancement Incentives</p>
-      <p style="font-size:14px; color:var(--text); line-height:1.7;">PDPM Audit Group and RevOptix1 have a fixed&#8209;fee incentive advantage program for meeting jointly defined operational milestones. Facilities pay PDPM Audit Group and RevOptix1 incentives structured quarterly, semi&#8209;annually, or annually.</p>
+    <div class="pricing-cards reveal">
+      <div class="price-card">
+        <div class="pc-tier">Small</div>
+        <div class="pc-beds">&le;75 beds</div>
+        <div class="pc-price">$3,500</div>
+        <div class="pc-per">per month</div>
+        <div class="pc-divider"></div>
+        <ul class="pc-features">
+          <li><span class="pc-check">&#10003;</span>Unlimited audit defense</li>
+          <li><span class="pc-check">&#10003;</span>RevOptix1™ access</li>
+          <li><span class="pc-check">&#10003;</span>Documentation scoring</li>
+          <li><span class="pc-check">&#10003;</span>Monthly compliance review</li>
+          <li><span class="pc-check">&#10003;</span>Standard support</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="pc-tier">Medium</div>
+        <div class="pc-beds">76–150 beds</div>
+        <div class="pc-price">$5,000</div>
+        <div class="pc-per">per month</div>
+        <div class="pc-divider"></div>
+        <ul class="pc-features">
+          <li><span class="pc-check">&#10003;</span>Everything in Small</li>
+          <li><span class="pc-check">&#10003;</span>Priority turnaround</li>
+          <li><span class="pc-check">&#10003;</span>Quarterly strategy review</li>
+          <li><span class="pc-check">&#10003;</span>Enhanced reporting</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="pc-tier">Large</div>
+        <div class="pc-beds">151–200 beds</div>
+        <div class="pc-price">$8,000</div>
+        <div class="pc-per">per month</div>
+        <div class="pc-divider"></div>
+        <ul class="pc-features">
+          <li><span class="pc-check">&#10003;</span>Everything in Medium</li>
+          <li><span class="pc-check">&#10003;</span>Dedicated specialist</li>
+          <li><span class="pc-check">&#10003;</span>Custom templates</li>
+          <li><span class="pc-check">&#10003;</span>Monthly leadership briefings</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="pc-tier">Enterprise</div>
+        <div class="pc-beds">201+ beds</div>
+        <div class="pc-price">$12,000</div>
+        <div class="pc-per">per month</div>
+        <div class="pc-divider"></div>
+        <ul class="pc-features">
+          <li><span class="pc-check">&#10003;</span>Everything in Large</li>
+          <li><span class="pc-check">&#10003;</span>Multi-facility analytics</li>
+          <li><span class="pc-check">&#10003;</span>Corporate strategy</li>
+          <li><span class="pc-check">&#10003;</span>Custom workflow engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="incentive-box reveal">
+      <div class="incentive-icon">&#9670;</div>
+      <div>
+        <div class="incentive-title">Achievement Enhancement Incentives</div>
+        <p class="incentive-text">PDPM Audit Group and RevOptix1 have a fixed&#8209;fee incentive advantage program for meeting jointly defined operational milestones. Facilities pay PDPM Audit Group and RevOptix1 incentives structured quarterly, semi&#8209;annually, or annually.</p>
+      </div>
     </div>
   </div>
 </section>
+
 <!-- REVOPTIX BRIDGE -->
 <section class="bridge">
   <div class="bridge-inner reveal">
-    <p class="section-kicker" style="color:var(--sage);">Powered By Technology</p>
-    <h2>PDPM Audit Group™ + <em>RevOptix1™</em></h2>
-    <p>Human expertise and AI technology working together — the complete SNF revenue and compliance defense system.</p>
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">Powered By Technology</span>
+    </div>
+    <h2 class="section-h">PDPM Audit Group™ + <em>RevOptix1™</em></h2>
+    <p class="bridge-sub">Human expertise and AI technology working together — the complete SNF revenue and compliance defense system.</p>
     <div class="bridge-cards">
       <div class="bridge-card">
         <div class="bc-logo">PDPM Audit Optimization Group™</div>
-        <div class="bc-tag tag-sage">Human Expertise</div>
-        <div class="bc-desc">Compliance auditing, audit defense, staff training, leadership meetings, physician training, regulatory monitoring, and iQIES documentation.</div>
+        <div class="bc-tag tag-platinum">Human Expertise</div>
+        <p class="bc-desc">Compliance auditing, audit defense, staff training, leadership meetings, physician training, regulatory monitoring, and iQIES documentation.</p>
       </div>
-      <div class="bridge-plus">+</div>
+      <div class="bridge-plus-col">
+        <div class="bridge-plus">+</div>
+      </div>
       <div class="bridge-card">
         <div class="bc-logo">RevOptix1™</div>
         <div class="bc-tag tag-gold">AI Technology</div>
-        <div class="bc-desc">AI-powered ICD-10 gap analysis, patient chart scanning, revenue recovery reports, physician order dashboard, and staff communications platform.</div>
+        <p class="bc-desc">AI-powered ICD-10 gap analysis, patient chart scanning, revenue recovery reports, physician order dashboard, and staff communications platform.</p>
       </div>
     </div>
     <div class="bridge-result">
-      <div class="br-text">Together, they form a complete system that <strong>finds every missed dollar</strong> and <strong>defends every audit</strong> — the only SNF solution that covers both revenue and compliance in one agreement.</div>
+      <p class="br-text">Together, they form a complete system that <strong>finds every missed dollar</strong> and <strong>defends every audit</strong> — the only SNF solution that covers both revenue and compliance in one agreement.</p>
       <a href="https://revoptix1.com" target="_blank" class="btn-bridge">Learn About RevOptix1™ →</a>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <div class="cta-inner reveal">
+<section class="cta-section">
+  <div class="reveal">
     <h2>Is Your Facility<br><em>Truly Prepared</em>?</h2>
     <p>Most SNFs discover their compliance gaps during an audit — not before. PDPM Audit Group™ finds them first, fixes them proactively, and defends you when it counts.</p>
-    <a href="#contact" class="btn-cta-gold">Schedule Your Consultation →</a>
+    <a href="#contact" class="btn-cta-gold">Schedule Your Consultation</a>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <h2>Schedule a Consultation</h2>
-    <p>Tell us about your facility and we'll reach out within 24 hours to schedule your free compliance assessment.</p>
+    <div class="reveal">
+      <h2>Schedule a Consultation</h2>
+      <p class="contact-sub">Tell us about your facility and we'll reach out within 24 hours to schedule your free compliance assessment.</p>
+      <div class="contact-divider"></div>
+    </div>
     <form id="contactForm" name="consultation" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitContact(event)">
       <input type="hidden" name="form-name" value="consultation">
       <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -662,29 +1640,30 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
             <option>201+ beds</option>
           </select>
         </div>
-        <button type="submit" class="btn-contact">Request Consultation →</button>
+        <button type="submit" class="btn-contact">Request Consultation</button>
       </div>
     </form>
     <div class="contact-success" id="contactSuccess">
-      <div style="font-size:20px;font-weight:800;color:#1a3d2b;margin-bottom:8px;">✓ Request Received!</div>
-      <p style="font-size:15px;font-weight:400;color:#374151;margin-bottom:20px;">Thank you — a member of our team will reach out within 24 hours to confirm your consultation.</p>
-      <div style="background:#fff;border:1px solid rgba(74,124,89,0.3);border-radius:10px;padding:20px;margin-bottom:16px;">
-        <div style="font-size:13px;font-weight:700;color:#0b1f45;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;">📅 Available Consultation Times (Mountain Time)</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
-          <div style="background:#f0f7f2;border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-weight:700;color:#1a3d2b;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Morning</div>
-            <div style="color:#4a7c59;font-size:17px;font-weight:700;margin:6px 0;">9:00 – 11:00 AM</div>
-            <div style="color:#6b7280;font-size:12px;">Monday – Friday</div>
+      <div class="cs-check">&#10003;</div>
+      <div class="cs-title">Request Received</div>
+      <p class="cs-sub">Thank you — a member of our team will reach out within 24 hours to confirm your consultation.</p>
+      <div class="cs-calendar">
+        <div class="cs-cal-title">Available Consultation Times (Mountain Time)</div>
+        <div class="cs-slots">
+          <div class="cs-slot">
+            <div class="cs-slot-label">Morning</div>
+            <div class="cs-slot-time">9:00 – 11:00 AM</div>
+            <div class="cs-slot-days">Monday – Friday</div>
           </div>
-          <div style="background:#f0f7f2;border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-weight:700;color:#1a3d2b;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Afternoon</div>
-            <div style="color:#4a7c59;font-size:17px;font-weight:700;margin:6px 0;">2:00 – 4:00 PM</div>
-            <div style="color:#6b7280;font-size:12px;">Monday – Friday</div>
+          <div class="cs-slot">
+            <div class="cs-slot-label">Afternoon</div>
+            <div class="cs-slot-time">2:00 – 4:00 PM</div>
+            <div class="cs-slot-days">Monday – Friday</div>
           </div>
         </div>
-        <a href="mailto:consultation@pdpmauditgroup.com?subject=Consultation%20Appointment%20Request&body=Hello%2C%0A%0AI%20just%20submitted%20the%20consultation%20form%20on%20your%20website%20and%20would%20like%20to%20confirm%20my%20appointment.%0A%0AMy%20preferred%20day%3A%20%0AMy%20preferred%20time%20(9-11am%20or%202-4pm%20MST)%3A%20%0A%0AThank%20you!" style="display:block;background:#c8922a;color:#fff;text-align:center;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;">📧 Pick Your Day &amp; Time →</a>
+        <a href="mailto:consultation@pdpmauditgroup.com?subject=Consultation%20Appointment%20Request&body=Hello%2C%0A%0AI%20just%20submitted%20the%20consultation%20form%20on%20your%20website%20and%20would%20like%20to%20confirm%20my%20appointment.%0A%0AMy%20preferred%20day%3A%20%0AMy%20preferred%20time%20(9-11am%20or%202-4pm%20MST)%3A%20%0A%0AThank%20you!" class="btn-cal">Confirm Your Appointment →</a>
       </div>
-      <p style="font-size:13px;color:#6b7280;">Questions? Email us at <a href="mailto:consultation@pdpmauditgroup.com" style="color:#c8922a;font-weight:600;">consultation@pdpmauditgroup.com</a></p>
+      <p class="cs-email">Questions? Email <a href="mailto:consultation@pdpmauditgroup.com">consultation@pdpmauditgroup.com</a></p>
     </div>
   </div>
 </section>
@@ -698,10 +1677,10 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
       </a>
       <div>
         <div class="footer-name">PDPM Audit Optimization Group™</div>
-        <div class="footer-sub">Compliance Defense for Skilled Nursing Facilities</div>
+        <div class="footer-tagline">Compliance Defense for Skilled Nursing Facilities</div>
       </div>
     </div>
-    <p>© 2025 PDPM Audit Optimization Group™. All rights reserved.<br>Powered by RevOptix1™ Revenue Optimization Technology.</p>
+    <p class="footer-copy">&copy; 2025 PDPM Audit Optimization Group™. All rights reserved.<br>Powered by RevOptix1™ Revenue Optimization Technology.</p>
     <div class="footer-links">
       <a href="#services">Services</a>
       <a href="#audits">Audit Defense</a>
@@ -734,7 +1713,7 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) setTimeout(() => e.target.classList.add('up'), i * 80);
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // Stag tag popups
@@ -765,7 +1744,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   document.querySelectorAll('.stag').forEach(function(el){
     var k=el.textContent.trim();
     if(!D[k])return;
-    el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label','Learn about '+k);
     el.addEventListener('click',function(){openStag(k);});
     el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openStag(k);}});
   });
@@ -791,9 +1769,7 @@ function submitContact(e) {
   const btn = form.querySelector('button[type="submit"]');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-
   const data = new FormData(form);
-
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -804,7 +1780,7 @@ function submitContact(e) {
     document.getElementById('contactSuccess').classList.add('show');
   })
   .catch(() => {
-    btn.textContent = 'Request Consultation →';
+    btn.textContent = 'Request Consultation';
     btn.disabled = false;
     alert('There was a problem submitting your request. Please try again or email us directly at consultation@pdpmauditgroup.com');
   });
